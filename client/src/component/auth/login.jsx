@@ -40,14 +40,14 @@ async function LoginUser(credentials) {
 }
 
 export default function Login() {
-  const [username, setUserName] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       const response = await LoginUser({
-        username,
+        email,
         password,
       });
       console.log(response);
@@ -87,8 +87,8 @@ export default function Login() {
                 id="email"
                 type="email"
                 name="email"
-                onChange={(e) => setUserName(e.target.value)}
-                value={username}
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 autoComplete="email"
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
