@@ -1,0 +1,20 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_POSTGRES")
+}
+
+model User {
+  id          Int       @id @default(autoincrement())  
+  name        String    @db.Text()  
+  email       String    @unique
+  role        String    @default("user")
+  password    String    @db.VarChar(100)
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+
+
+}
+

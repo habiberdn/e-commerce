@@ -1,17 +1,40 @@
-const userModel = require('../model/user')
-const factoryModel = require('./handleFactory')
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
-exports.getAllUser = factoryModel.getAll(userModel)
-exports.getOneUser = factoryModel.getOne(userModel)
-exports.UpdateUser = factoryModel.updateOne(userModel)
-exports.DeleteUser = factoryModel.deleteOne(userModel)
+const bcrypt = require("bcryptjs");
 
-exports.createUser = (req, res) => {
-    res.status(500).json({
-      status: 'error',
-      message: 'This route is not yet defined!, Please use signup instead'
-    }); //500 means internal server error
-  };
+exports.getAllUser = async (req, res, next) => {
+  try {
+    const users = await prisma.user.findMany();
 
+    res.status(200).json({
+      status: "Success",
+      users,
+    });
+    console.log(users);
+  } catch (err) {
+    console.log();
+  }
+};
 
-
+exports.Register = async (req, res) => {
+  try {
+    const hashPassword = await bcrypt.hash(req.body.password, 10);
+    console.log(hashPassword)
+    const user = await prisma.user.create({
+      data: {
+        name: req.body.name,
+        email: req.body.email,
+        password: hashPassword,
+      },
+      
+    });
+    res.status(201).json({
+      status: "success",
+      user,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error });
+  }
+};

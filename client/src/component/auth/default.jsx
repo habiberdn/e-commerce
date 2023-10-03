@@ -1,7 +1,9 @@
 import React from 'react';
+import Navbar from '../home/navbar'
 
 export default function Preferences() {
-  return(
-    <h2>Preferences</h2>
+  return(<div>
+    <Navbar/>
+  </div>
   );
 }
