@@ -20,7 +20,7 @@ exports.getAllUser = async (req, res, next) => {
 exports.Register = async (req, res) => {
   try {
     const hashPassword = await bcrypt.hash(req.body.password, 10);
-    console.log(hash)
+    console.log(hashPassword)
     const user = await prisma.user.create({
       data: {
         name: req.body.name,
