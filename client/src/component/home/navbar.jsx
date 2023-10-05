@@ -19,8 +19,8 @@ export default function Navbar() {
         </a>
       </div>
       <div className="flex gap-2">
-        <input className="text-black rounded-md w-[30rem] h-[2rem] mt-[0.8rem] flex justify-center items-center" placeholder="Search"/>
-          <button className="bg-slate-500 rounded-lg h-[2rem] mt-[0.8rem] w-[3rem] flex justify-center items-center">
+        <input className="text-black rounded-md w-[30rem] px-3 h-[2rem] mt-[0.8rem] flex justify-center items-center" placeholder="Search"/>
+          <button className="bg-slate-500 rounded-lg h-[2rem] mt-[0.8rem] w-[3rem] flex justify-center items-center ">
             <BsSearch />
           </button>
       </div>

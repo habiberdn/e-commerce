@@ -1,31 +1,13 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
 
-const hashPasswordMiddleware = async (params, next) => {
-  const { data } = params;
-  if (data.password && !data.isModified("password")) {
-    return next();
-  }
+// const correctPassword = async (candidatePassword,userPassword) => {
 
-  data.password = await bcrypt.hash(data.password, 12);
-  data.passwordConfirm = undefined;
+//   return await bcrypt.compare(candidatePassword, userPassword);
+// };
 
-  return next();
-};
-
-const correctPasswordMiddleware = async (params, next) => {
-  const { data } = params;
-  const userPassword = data.password;
-  const candidatePassword = params.args.candidatePassword;
-
+async function correctPassword(candidatePassword,userPassword){
   return await bcrypt.compare(candidatePassword, userPassword);
-};
-
-prisma.pre("user.create", hashPasswordMiddleware);
-prisma.pre("user.update", hashPasswordMiddleware);
-
-prisma.post("user.login", correctPasswordMiddleware);
-
+}
+module.exports = correctPassword
 /*
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next(); //hash = encrypt | bcrypt = hashing algorithm

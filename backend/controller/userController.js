@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const AppError = require('../utils/appError')
 
 const bcrypt = require("bcryptjs");
 
@@ -20,12 +21,12 @@ exports.getAllUser = async (req, res, next) => {
 exports.Register = async (req, res) => {
   try {
     const hashPassword = await bcrypt.hash(req.body.password, 10);
-    console.log(hashPassword)
+   
     const user = await prisma.user.create({
       data: {
         name: req.body.name,
         email: req.body.email,
-        password: hashPassword,
+        password: hashPassword
       },
       
     });
@@ -38,3 +39,27 @@ exports.Register = async (req, res) => {
     res.status(500).json({ error });
   }
 };
+
+exports.login =async (req,res,next)=>{
+
+  const { email, password } = req.body;
+
+  //1. Check password and email are exist
+  if (!email || !password) {
+    return next(new AppError('Please provide email and password', 400));
+  }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email: email,
+      password:password
+    },
+  })
+
+
+  // if (!user || !await correctPassword(password,user.password)){
+  //   return next(new AppError('Incorrect email or password', 401));
+  // }
+
+  console.log(user)
+}
