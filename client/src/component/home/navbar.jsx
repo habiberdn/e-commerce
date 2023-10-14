@@ -1,13 +1,13 @@
 import React from "react";
-import "../style.css";
+// import "../style.css";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function Navbar() {
   return (
-    <div class="flex bg-gray-800 h-[3.5rem] text-white w-screen">
+    <div className="flex h-[3.5rem] w-screen top-0">
       <div
-        class="flex justify-start items-center w-full h-full ml-[1.5rem]"
+        className="flex justify-start items-center w-full h-full ml-[1.5rem]"
         id="name"
       >
         <a href="/">
@@ -18,9 +18,9 @@ export default function Navbar() {
           </b>
         </a>
       </div>
-      <div className="flex gap-2">
-        <input className="text-black rounded-md w-[30rem] px-3 h-[2rem] mt-[0.8rem] flex justify-center items-center" placeholder="Search"/>
-          <button className="bg-slate-500 rounded-lg h-[2rem] mt-[0.8rem] w-[3rem] flex justify-center items-center ">
+      <div className="flex gap-2" >
+        <input style={{backgroundColor:'#F0F0F0'}} className="text-black rounded-md w-[30rem] px-3 h-[2rem] mt-[0.8rem] flex justify-center items-center" placeholder="Search"/>
+          <button className=" rounded-lg h-[2rem] mt-[0.8rem] w-[3rem] flex justify-center items-center ">
             <BsSearch />
           </button>
       </div>

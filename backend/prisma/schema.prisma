@@ -11,6 +11,16 @@ model User {
   password    String?    @db.Text()
 }
 
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  price       Float
+  image       String[]
+}
+
+
+
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch"]
