@@ -1,7 +1,7 @@
 import React from "react";
 import Login from "./auth/login";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Default from "./auth/default"
+import Default from "./default"
 
 export default function App() {
   
@@ -10,7 +10,6 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Default/>} />
       <Route path="/login" element={<Login />} />
-
     </Routes>
   </Router>
   

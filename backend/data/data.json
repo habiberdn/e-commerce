@@ -1,5 +1,32 @@
 [
-    {
-        
-    }
+  {
+    "name": "Laptop",
+    "description": "Powerful laptop with high-end specifications",
+    "price": 999.99,
+    "image": "laptop.jpg"
+  },
+  {
+    "name": "Smartphone",
+    "description": "Latest smartphone with a stunning display",
+    "price": 599.99,
+    "image": "smartphone.jpg"
+  },
+  {
+    "name": "Headphones",
+    "description": "Noise-canceling headphones for immersive audio",
+    "price": 149.99,
+    "image": "headphones.jpg"
+  },
+  {
+    "name": "Smartwatch",
+    "description": "Fitness tracker and smartwatch in one",
+    "price": 199.99,
+    "image": "smartwatch.jpg"
+  },
+  {
+    "name": "Camera",
+    "description": "High-quality DSLR camera for photography enthusiasts",
+    "price": 899.99,
+    "image": "camera.jpg"
+  }
 ]

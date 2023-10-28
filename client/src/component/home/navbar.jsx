@@ -1,11 +1,11 @@
 import React from "react";
-// import "../style.css";
 import { BsSearch } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function Navbar() {
   return (
-    <div className="flex h-[3.5rem] w-screen top-0">
+    <div>
+    <div className="flex h-[3.5rem] w-screen top-0 pt-1">
       <div
         className="flex justify-start items-center w-full h-full ml-[1.5rem]"
         id="name"
@@ -29,8 +29,11 @@ export default function Navbar() {
         <a className="border-white z-10" href="/login">
           Login
         </a>
-        <a className="border-white">Logout</a>
+        <a className="border-white" href="/logout">Logout</a>
       </div>
+     
+    </div>
+    <hr className="mt-2" />
     </div>
   );
 }
