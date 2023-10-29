@@ -1,12 +1,15 @@
 import React from "react";
-import Slide from "./slide";
+import Slide from "../utils/slide";
 
-// import Slide from './slide'
 
-export default function Home(){       
+export default function Home() {
     
-    return (
-    <div>
-     <Slide/>
-    </div>)
+  return (
+    <div className="flex flex-col">
+      <Slide />
+      <footer>
+      
+      </footer>
+    </div>
+  );
 }

@@ -1,17 +1,13 @@
-import React from "react";
-import Login from "./auth/login";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Default from "./default"
+import React from 'react';
+import Navbar from './home/navbar'
+import Content from './home/home'
 
-export default function App() {
-  
-  return (
-    <Router>
-    <Routes>
-      <Route path="/" element={<Default/>} />
-      <Route path="/login" element={<Login />} />
-    </Routes>
-  </Router>
-  
+
+export default function Default() {
+  return(<div>
+    <Navbar/>
+    <Content/>
+    
+  </div>
   );
 }
