@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './home/navbar'
-import Content from './home/home'
+import Content from './home/content'
 
 
 export default function Default() {

@@ -18,7 +18,7 @@ const Example = () => {
     color: theme.palette.text.secondary,
   }));
   return (
-    <div className="mt-4 ml-[0.8rem] mr-[0.5rem] w-[98%]">
+    <div className="mt-2 ml-[0.8rem] mr-[0.5rem] w-[98%]">
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>

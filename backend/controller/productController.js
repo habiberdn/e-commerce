@@ -2,10 +2,6 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const fs = require("fs");
 
-const data = JSON.parse(
-  fs.readFileSync(`${__dirname}/../data/data.json`, "utf8")
-);
-
 exports.createData = async (req, res, next) => {
   try {
       console.log(req.body.image)

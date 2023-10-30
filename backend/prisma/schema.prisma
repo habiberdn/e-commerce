@@ -4,24 +4,26 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())  
-  name        String    @db.Text()  
-  email       String    @unique
-  role        String    @default("user")
-  password    String?    @db.Text()
+  id                    Int       @id @default(autoincrement())  
+  name                  String    @db.Text()  
+  email                 String    @unique
+  role                  String    @default("user")
+  password              String?   @db.Text()
+  created_at            DateTime? @default(now())
+  passwordResetToken    String? 
+  passwordResetExpires  DateTime? 
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
-  name        String
-  description String?
-  price       Float
-  image       String?
-  rating      Int?     @default(0)
+  id                  Int      @id @default(autoincrement())
+  name                String
+  description         String?
+  price               Float
+  image               String?
+  rating              Int?     @default(0)
+  ratingsAverage      Float?   
+  ratingsQuantity     Int?     @default(0)  
 }
-
-
-
 
 
 generator client {
