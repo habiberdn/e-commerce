@@ -1,7 +1,7 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import "../style.css";
+import "../../input.css";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import p_1 from "../../image/p-1.jpeg";
@@ -18,7 +18,7 @@ const Example = () => {
     color: theme.palette.text.secondary,
   }));
   return (
-    <div className="mt-2 ml-[0.8rem] mr-[0.5rem] w-[98%]">
+    <div className="mt-2 ml-[1.1rem] mr-[0.5rem] w-[98%] rounded-lg ">
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>

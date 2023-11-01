@@ -4,29 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style src="style.css"></style>
+    <style src="../src/input.css"></style>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="../dist/output.css" rel="stylesheet" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300&display=swap"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
   </head>
   <body>
     <div id="root"></div>
-    
+
     <style src="../src/index.js"></style>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module">
-      import swiper from 'https://cdn.jsdelivr.net/npm/swiper@11.0.3/+esm'
-
-
-      </script>
+      import swiper from "https://cdn.jsdelivr.net/npm/swiper@11.0.3/+esm";
+    </script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily:{
+              poppins:['Poppins'],
+              montserrat:['Montserrat']
+            }
+          }
+        }
+      }
+    </script>
   </body>
 </html>
