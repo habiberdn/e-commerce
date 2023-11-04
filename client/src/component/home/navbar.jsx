@@ -9,7 +9,7 @@ export default function Navbar() {
     setSlide(!slide);
   };
   return (
-      <div className="flex bg-[#FFFF] z-10 fixed ml-[1rem] h-[3.5rem] w-screen top-0 pt-1  ">
+      <div className="flex bg-[#FFFF] z-20 fixed ml-[1rem] h-[3.5rem] w-full top-0 pt-1  ">
         <div
           className="flex justify-start items-center w-full h-full gap-5"
           id="name"

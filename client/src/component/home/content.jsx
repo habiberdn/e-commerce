@@ -24,21 +24,19 @@ export default function Home() {
   }, [isData]);
 
   return (
-    <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem]">
+    <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]">
       <Slide />
       <div className="flex flex-col">
-        <div className="flex justify-between">
-          <p className="ml-[1.3rem] text-lg">Produk</p>
-          <p className="mr-3 text-lg">
-            <a href="/product">View All</a>
-          </p>
+        <div className="flex justify-center h-full">
+          <p className="ml-[1.3rem] text-lg font-montserrat pt-[5px]"><b>For You</b></p>
+          
         </div>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={1} className="ml-4">
+          <Grid container spacing={1} className="">
             {isData?.map((value) => {
               return (
                 <Grid item xs={2}>
-                  <div className="flex justify-center items-center h-full w-full">
+                  <div className="flex justify-center ml-[5px] items-center h-full w-full">
                     <Item className=" mt-4  rounded-xl">
                       <div className="flex justify-center items-center h-full w-full">
                         <Card
