@@ -2,8 +2,8 @@ import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-export default function Slideover() {
-  const [open, setOpen] = useState(true);
+export default function Slideover(props) {
+  const [open, setOpen] = useState(props.isTrue);
 
   return (
     <div className="">

@@ -4,7 +4,7 @@ import Content from './home/content'
 
 
 export default function Default() {
-  return(<div className='overflow-x-hidden'>
+  return(<div className='overflow-x-hidden relative'>
     <Navbar/>
     <Content/>
     

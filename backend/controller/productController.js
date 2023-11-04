@@ -4,15 +4,15 @@ const fs = require("fs");
 
 exports.createData = async (req, res, next) => {
   try {
-      console.log(req.body.image)
-     const createData =  await prisma.product.create({
-        data: {
-          name: req.body.name,
-          description: req.body.description,
-          price: req.body.price,
-          image: req.body.image,
-        },
-      });
+    console.log(req.body.image);
+    const createData = await prisma.product.create({
+      data: {
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price,
+        image: req.body.image,
+      },
+    });
 
     res.status(201).json({
       status: "Success",
@@ -32,14 +32,31 @@ exports.getAllData = async (req, res, next) => {
   });
 };
 
-exports.deleteData = async (req,res,next)=>{
-   await prisma.product.delete({
+exports.deleteData = async (req, res, next) => {
+  await prisma.product.delete({
     where: {
-      id:req.body.id}
+      id: req.body.id,
+    },
   });
 
   res.status(200).json({
     status: "success",
-   
   });
-}
+};
+
+exports.updateData = async (req, res, next) => {
+  console.log(req.params.id)
+  console.log(req.body.image)
+
+  await prisma.product.update({
+    where: {
+      id: parseInt(req.params.id) ,
+    },
+    data: {
+      image: req.body.image,
+    },
+  });
+  res.status(200).json({
+    status: "success",
+  });
+};

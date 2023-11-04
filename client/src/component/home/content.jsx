@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Slide from "../utils/slide";
 import Card from "./card";
 import Axios from "axios";
@@ -16,45 +16,44 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Home() {
-  const isDataRef = useRef();
-
+  const [isData, setData] = useState();
   useEffect(() => {
     Axios.get("http://127.0.0.1:3001/api/v1/product").then((response) => {
-      isDataRef.current = response;
-      console.log(response);
+      setData(response.data.getData);
     });
-  }, []);
-
-  console.log(isDataRef);
+  }, [isData]);
 
   return (
-    <div className="flex flex-col bg-[#f1f2f2] ">
+    <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem]">
       <Slide />
       <div className="flex flex-col">
         <div className="flex justify-between">
           <p className="ml-[1.3rem] text-lg">Produk</p>
-          <p className="mr-2 text-lg"><a href="product">View All</a></p>
+          <p className="mr-3 text-lg">
+            <a href="/product">View All</a>
+          </p>
         </div>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={1} className="ml-4">
-            <Grid item xs={2}>
-              <div className="flex justify-center items-center h-full w-full">
-                <Item className=" mt-4  rounded-xl">
+            {isData?.map((value) => {
+              return (
+                <Grid item xs={2}>
                   <div className="flex justify-center items-center h-full w-full">
-                    <Card />
+                    <Item className=" mt-4  rounded-xl">
+                      <div className="flex justify-center items-center h-full w-full">
+                        <Card
+                          name={value.name}
+                          description={value.description}
+                          price={value.price}
+                          image={value.image}
+                          rating={value.rating}
+                        />
+                      </div>
+                    </Item>
                   </div>
-                </Item>
-              </div>
-            </Grid>
-            <Grid item xs={2}>
-              <div className="flex justify-center items-center h-full w-full">
-                <Item className=" mt-4  rounded-xl">
-                  <div className="flex justify-center items-center h-full w-full">
-                    <Card />
-                  </div>
-                </Item>
-              </div>
-            </Grid>
+                </Grid>
+              );
+            })}
           </Grid>
         </Box>
       </div>
