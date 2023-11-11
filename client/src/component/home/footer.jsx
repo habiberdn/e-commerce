@@ -9,7 +9,7 @@ import X_logo from '../../image/X_logo.jpg';
 
 export default function Footer() {
   return (
-    <div className="ml-[2rem] mt-4 flex h-[18rem] gap-[2.5rem]">
+    <div className="ml-[2rem] mt-4 flex h-[18rem] gap-[3rem]">
       <div className="flex flex-col gap-2">
         <b>
           <p> E-Commerce</p>
@@ -23,6 +23,7 @@ export default function Footer() {
           <p>BrideStrory</p>
         </div>
       </div>
+      
       <div className="flex flex-col gap-2">
         <b>
           <p>Help and Guide</p>
@@ -35,20 +36,20 @@ export default function Footer() {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <b>
+        <b className="flex justify-center">
           <p className="">Payment</p>
         </b>
         <div className="flex gap-2">
-          <img src={Visa} alt="" className="w-[3rem] h-[3rem]" />
-          <img src={MasterCard} alt="" className="w-[3rem] h-[3rem]" />
+          <img src={Visa} alt="" className="w-[3.5rem] h-[3rem]" />
+          <img src={MasterCard} alt="" className="w-[3.5rem] h-[3rem]" />
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <b>
+        <b className="flex justify-center">
           <p className="">Follow Us </p>
         </b>
         <div className="flex gap-2">
-            <img src={Facebook} alt="" className="w-[3rem] h-[2rem] rounded-full"/>
+            <img src={Facebook} alt="" className="w-[2.5rem] h-[2rem] rounded-full"/>
             <img src={Instagram} alt=""className="w-[3rem] h-[2rem] rounded-full" />
             <img src={X_logo} alt="" className="w-[2rem] h-[2rem] rounded-full"/>
         </div>

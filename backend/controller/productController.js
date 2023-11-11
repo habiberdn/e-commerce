@@ -1,6 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-const fs = require("fs");
 
 exports.createData = async (req, res, next) => {
   try {
@@ -11,6 +10,7 @@ exports.createData = async (req, res, next) => {
         description: req.body.description,
         price: req.body.price,
         image: req.body.image,
+        productCategory:req.body.productCategory
       },
     });
 
@@ -53,10 +53,17 @@ exports.updateData = async (req, res, next) => {
       id: parseInt(req.params.id) ,
     },
     data: {
+      name:req.body.name,
+      productCategory:req.body.productCategory,
+      description:req.body.description,
+      price:req.body.price,
       image: req.body.image,
+      rating:req.body.rating
     },
   });
   res.status(200).json({
     status: "success",
   });
 };
+
+

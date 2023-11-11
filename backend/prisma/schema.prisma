@@ -7,7 +7,7 @@ model User {
   id                    Int       @id @default(autoincrement())  
   name                  String    @db.Text()  
   email                 String    @unique
-  role                  String    @default("user")
+  Category                  String    @default("user")
   password              String?   @db.Text()
   created_at            DateTime? @default(now())
   passwordResetToken    String? 
@@ -20,11 +20,17 @@ model Product {
   description         String?
   price               Float
   image               String?
+  productCategory     Category? 
   rating              Int?     @default(0)
   ratingsAverage      Float?   
   ratingsQuantity     Int?     @default(0)  
 }
 
+enum Category {
+  Electronic
+  Fashion
+  Photography
+}
 
 generator client {
   provider        = "prisma-client-js"

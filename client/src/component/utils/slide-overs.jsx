@@ -6,7 +6,7 @@ export default function Slideover(props) {
   const [open, setOpen] = useState(props.isTrue);
 
   return (
-    <div className="">
+    <div className="z-40">
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
           <Transition.Child
@@ -58,13 +58,16 @@ export default function Slideover(props) {
                         </button>
                       </div>
                     </Transition.Child>
-                    <div className="flex h-full flex-col  bg-white py-6 shadow-xl">
+                    <div className="flex h-full flex-col  bg-white py-6 ">
                       <div className="px-4 sm:px-6">
                         <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
-                          Panel title
+                          Category 
                         </Dialog.Title>
                       </div>
-                      <div className="relative mt-6 flex-1 px-4 sm:px-6"></div>
+                      <div className="relative mt-6 flex flex-col justify-start px-4  gap-4">
+                      <a href="/category" className="rounded-lg pl-[6px] h-[2rem] flex justify-start items-center hover:bg-[#2962ff] hover:text-white">Electronic</a>                      
+                      <a href="/category" className="rounded-lg pl-[6px] h-[2rem] flex justify-start items-center hover:bg-[#2962ff] hover:text-white">Fashion</a>                      
+                      </div>
                     </div>
                   </Dialog.Panel>
                 </Transition.Child>
