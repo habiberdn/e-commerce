@@ -8,7 +8,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Elektronik from "../../image/Laptop.png";
 import Fashion from '../../image/kids_tshirt.jpeg'
-import Camera from '../../image/Camcat.jpeg'
+import Camera from '../../image/camera.jpeg'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -32,25 +32,23 @@ export default function Home() {
       <Slide />
 
       <div className="ml-[1.1rem] w-full h-[6rem] ">
-        <div className="flex justify-center h-full items-center gap-4">
+        <div className="flex justify-center h-full items-center gap-6">
           <div className="flex flex-col">
-          <button className=" rounded-xl bg-[#FFFF] h-[3.5rem] w-[3.5rem] flex justify-center items-center">
+          <a href="/category/Electronic" className=" rounded-xl p-[8px] bg-[#FFFF] h-[3.5rem] w-[3.5rem] flex justify-center items-center">
             <img className="z-0" src={Elektronik} alt="" width={50}  />
-          </button>
+          </a>
           </div>
 
           <div className="flex flex-col">
-          <button className=" rounded-xl bg-[#FFFF] h-[3.5rem] w-[3.5rem] flex justify-center items-center">
+          <a  href="/category/Fashion" className=" rounded-xl p-[8px] bg-[#FFFF] h-[3.5rem] w-[3.5rem] flex justify-center items-center">
             <img className="z-0" src={Fashion} alt="" width={50} />
-          </button>
+          </a>
           </div>
           <div className="flex flex-col">
-          <button className=" rounded-xl bg-[#FFFF] h-[3.5rem] w-[3.5rem] flex justify-center items-center">
+          <a href="/category/Photography" className=" rounded-xl p-[8px] bg-[#FFFF] h-[3.5rem] w-[3.5rem] flex justify-center items-center">
             <img className="z-0" src={Camera} alt="" width={50} />
-          </button>
+          </a>
           </div>
-         
-
         </div>
       </div>
       <div className="flex flex-col">

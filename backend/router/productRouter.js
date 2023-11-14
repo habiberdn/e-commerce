@@ -9,6 +9,7 @@ router
   .delete(productController.deleteData)
   
 router.route('/:id').patch(productController.updateData);
+router.route('/:photography').get(productController.getByCategories)
 
 
 module.exports = router;

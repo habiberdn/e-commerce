@@ -65,8 +65,10 @@ export default function Slideover(props) {
                         </Dialog.Title>
                       </div>
                       <div className="relative mt-6 flex flex-col justify-start px-4  gap-4">
-                      <a href="/category" className="rounded-lg pl-[6px] h-[2rem] flex justify-start items-center hover:bg-[#2962ff] hover:text-white">Electronic</a>                      
-                      <a href="/category" className="rounded-lg pl-[6px] h-[2rem] flex justify-start items-center hover:bg-[#2962ff] hover:text-white">Fashion</a>                      
+                      <a href="/category/electronic" className="rounded-lg pl-[6px] h-[2rem] flex justify-start items-center hover:bg-[#2962ff] hover:text-white">Electronic</a>                      
+                      <a href="/category/fashion" className="rounded-lg pl-[6px] h-[2rem] flex justify-start items-center hover:bg-[#2962ff] hover:text-white">Fashion</a>                      
+                      <a href="/category/photography" className="rounded-lg pl-[6px] h-[2rem] flex justify-start items-center hover:bg-[#2962ff] hover:text-white">Photography</a>                      
+
                       </div>
                     </div>
                   </Dialog.Panel>
