@@ -2,7 +2,7 @@ import React from "react";
 import Login from "./auth/login";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Default from "./app"
-import CategoryPhoto from './prodCat/Eleccategory'
+import CategoryPhoto from './prodCat/Photocategory'
 
 export default function App() {
   return (
