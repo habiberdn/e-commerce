@@ -36,7 +36,7 @@ exports.getAllData = async (req, res, next) => {
 exports.getByCategories =catchAsync( async(req,res,next)=>{
   const getData = await prisma.product.findMany({
     where:{
-      productCategory: req.params.photography
+      productCategory: req.params.category
     }
   });
 
