@@ -7,7 +7,6 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import { useParams } from "react-router-dom";
 import Rating from '../utils/rating'
 
 
@@ -21,16 +20,14 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function PhotographyCat() {
   const [isData, setData] = useState("");
-  let data1 = useParams();
   useEffect(() => {
-    axios.get(`http://127.0.0.1:3001/api/v1/product/${data1.Photography}`).then(
+    axios.get(`http://127.0.0.1:3001/api/v1/product/Photography`).then(
       (response) => {
         setData(response.data.getData);
       },
       [isData]
     );
   });
-
   return (
     <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 ">
       <Navbar />
@@ -39,7 +36,7 @@ export default function PhotographyCat() {
           <div className="">
             <h4 className="text-[#2962FF] flex gap-2 font-dmsans">
               Home <p className="text-black">&gt;</p> Category
-              <p className="text-black">&gt;</p> Electronic
+              <p className="text-black">&gt;</p> Photography
             </h4>
           </div>
           <div className="ml-[3px] flex flex-col gap-5">
@@ -64,28 +61,26 @@ export default function PhotographyCat() {
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="flex bg-[#DFDFDF] justify-between  pl-[10px] items-center  w-[45rem] h-[3rem] rounded-lg">
+        <div className="flex bg-[#DFDFDF] justify-between  pl-[10px] items-center  w-[54rem] h-[3rem] rounded-lg">
             <div className="flex justify-start items-center gap-4">
               <p className="font-dmsans">Sort</p>
               <Dropdown />
             </div>
           </div>
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={1} className="">
+          <Box sx={{ flexGrow: 1 }} >
+            <Grid container spacing={1} >
               {Object.keys(isData).map((key) => {
                 return (
-                  <Grid item xs={2}>
-                    <div className="flex justify-center ml-[2rem] items-center h-full w-full">
-                      <Item className=" mt-4  rounded-xl">
-                        <div className="flex justify-center items-center h-full w-full">
-                          <Card
-                            name={isData[key].name}
-                            description={isData[key].description}
-                            price={isData[key].price}
-                            image={isData[key].image}
-                            rating={isData[key].rating}
-                          />
-                        </div>
+                  <Grid item xs={3} className="">
+                    <div className="flex justify-center  items-center h-full ">
+                      <Item className="flex justify-center items-center  mr-[2.5rem] h-full mt-4 rounded-xl ">
+                        <Card
+                          name={isData[key].name}
+                          description={isData[key].description}
+                          price={isData[key].price}
+                          image={isData[key].image}
+                          rating={isData[key].rating}
+                        />
                       </Item>
                     </div>
                   </Grid>
