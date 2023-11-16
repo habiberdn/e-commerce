@@ -4,7 +4,7 @@ export default function Card(props) {
   return (
     <div className="rounded-lg  ">
       <div className="relative w-[10rem] h-[17rem] flex flex-col flex-start rounded-lg ">
-        <a href=" ">
+        <a href={"/" +props.id}>
           <div className="mb-2 flex justify-center" >
             <img
               src={require(`../../image/${props.image}`)}

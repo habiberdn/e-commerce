@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-const catchAsync = require('../utils/catchAsync')
+const catchAsync = require("../utils/catchAsync");
+const { param } = require("../router/productRouter");
 
 exports.createData = async (req, res, next) => {
   try {
@@ -11,7 +12,7 @@ exports.createData = async (req, res, next) => {
         description: req.body.description,
         price: req.body.price,
         image: req.body.image,
-        productCategory:req.body.productCategory
+        productCategory: req.body.productCategory,
       },
     });
 
@@ -33,18 +34,32 @@ exports.getAllData = async (req, res, next) => {
   });
 };
 
-exports.getByCategories =catchAsync( async(req,res,next)=>{
-  const getData = await prisma.product.findMany({
-    where:{
-      productCategory: req.params.category
-    }
-  });
+exports.getOne = async (req, res, next) => {
+  const paramsID = req.params.id; //
+  if (!isNaN(paramsID)) {
+    const getData = await prisma.product.findUnique({
+      where: {
+        id:parseInt(paramsID),
+      },
+    });
+    res.status(200).json({
+      status: "success",
+      getData,
+    });
+  } else {
+    const getData = await prisma.product.findMany({
+      where: {
+        productCategory: paramsID,
+      },
+    });
 
-  res.status(200).json({
-    status:"Success",
-    getData
-  })
-})
+    res.status(200).json({
+      status: "Success",
+      getData,
+    });
+  }
+};
+
 exports.deleteData = async (req, res, next) => {
   await prisma.product.delete({
     where: {
@@ -58,25 +73,23 @@ exports.deleteData = async (req, res, next) => {
 };
 
 exports.updateData = async (req, res, next) => {
-  console.log(req.params.id)
-  console.log(req.body.image)
+  console.log(req.params.id);
+  console.log(req.body.image);
 
   await prisma.product.update({
     where: {
-      id: parseInt(req.params.id) ,
+      id: parseInt(req.params.id),
     },
     data: {
-      name:req.body.name,
-      productCategory:req.body.productCategory,
-      description:req.body.description,
-      price:req.body.price,
+      name: req.body.name,
+      productCategory: req.body.productCategory,
+      description: req.body.description,
+      price: req.body.price,
       image: req.body.image,
-      rating:req.body.rating
+      rating: req.body.rating,
     },
   });
   res.status(200).json({
     status: "success",
   });
 };
-
-

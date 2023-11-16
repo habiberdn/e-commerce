@@ -8,8 +8,9 @@ router
   .post(productController.createData)
   .delete(productController.deleteData)
   
-router.route('/:id').patch(productController.updateData);
-router.route('/:category').get(productController.getByCategories)
+router.route('/:id').patch(productController.updateData).get(productController.getOne);
+
+
 
 
 module.exports = router;

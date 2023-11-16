@@ -38,7 +38,6 @@ export default function Home() {
             <img className="z-0" src={Elektronik} alt="" width={50}  />
           </a>
           </div>
-
           <div className="flex flex-col">
           <a  href="/category/Fashion" className=" rounded-xl p-[8px] bg-[#FFFF] h-[3.5rem] w-[3.5rem] flex justify-center items-center">
             <img className="z-0" src={Fashion} alt="" width={50} />
@@ -62,10 +61,11 @@ export default function Home() {
             {isData?.map((value) => {
               return (
                 <Grid item xs={2}>
-                  <div className="flex justify-center ml-[5px] items-center h-full w-full">
-                    <Item className=" mt-4  rounded-xl">
+                  <div className="flex justify-center ml-[5px]  items-center h-full w-full">
+                    <Item className=" mt-4  rounded-xl ">
                       <div className="flex justify-center items-center h-full w-full">
                         <Card
+                          id={value.id}
                           name={value.name}
                           description={value.description}
                           price={value.price}

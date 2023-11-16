@@ -68,18 +68,19 @@ export default function PhotographyCat() {
             </div>
           </div>
           <Box sx={{ flexGrow: 1 }} >
-            <Grid container spacing={1} >
+            <Grid container spacing={2} >
               {Object.keys(isData).map((key) => {
                 return (
                   <Grid item xs={3} className="">
                     <div className="flex justify-center  items-center h-full ">
                       <Item className="flex justify-center items-center  mr-[2.5rem] h-full mt-4 rounded-xl ">
                         <Card
-                          name={isData[key].name}
-                          description={isData[key].description}
-                          price={isData[key].price}
-                          image={isData[key].image}
-                          rating={isData[key].rating}
+                         id={isData[key].id}
+                         name={isData[key].name}
+                         description={isData[key].description}
+                         price={isData[key].price}
+                         image={isData[key].image}
+                         rating={isData[key].rating}
                         />
                       </Item>
                     </div>
