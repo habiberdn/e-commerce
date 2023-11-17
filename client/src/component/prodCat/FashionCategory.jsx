@@ -59,8 +59,8 @@ export default function PhotographyCat() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="flex bg-[#DFDFDF] justify-between  pl-[10px] items-center  w-[54rem] h-[3rem] rounded-lg">
+        <div className="flex flex-col mr-[1rem]">
+          <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[53.5rem] h-[3rem] rounded-lg">
             <div className="flex justify-start items-center gap-4">
               <p className="font-dmsans">Sort</p>
               <Dropdown />

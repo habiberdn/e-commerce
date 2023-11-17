@@ -20,7 +20,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Home() {
   const [isData, setData] = useState();
-
   useEffect(() => {
     Axios.get("http://127.0.0.1:3001/api/v1/product").then((response) => {
       setData(response.data.getData);
@@ -61,7 +60,7 @@ export default function Home() {
             {isData?.map((value) => {
               return (
                 <Grid item xs={2}>
-                  <div className="flex justify-center ml-[5px]  items-center h-full w-full">
+                  <div className="flex justify-center ml-[5px] items-center h-full w-full">
                     <Item className=" mt-4  rounded-xl ">
                       <div className="flex justify-center items-center h-full w-full">
                         <Card

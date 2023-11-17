@@ -26,6 +26,15 @@ model Product {
   ratingsQuantity     Int?     @default(0)  
 }
 
+model Checkout{
+  id                  Int      @id @default(autoincrement())
+  name                String
+  description         String?
+  price               Float
+  image               String?
+
+}
+
 enum Category {
   Electronic
   Fashion
