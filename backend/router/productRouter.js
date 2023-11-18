@@ -6,9 +6,10 @@ router
   .route("/")
   .get(productController.getAllData)
   .post(productController.createData)
-  .delete(productController.deleteData)
+  .delete(productController.deleteAllData)
   
-router.route('/:id').patch(productController.updateData).get(productController.getOne);
+  
+router.route('/:id').patch(productController.updateData).get(productController.getOne).delete(productController.deleteData);
 
 
 

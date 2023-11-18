@@ -8,6 +8,18 @@ export default function Product() {
   const [isProduct, setProduct] = useState();
   const [count, setCount] = useState(1);
   const [expanded, setExpanded] = useState(false);
+  const [content,setContent] = useState()
+
+  const handleChange = (event)=>{
+    const { name, value } = event.target;
+
+    setContent(prevNote => {
+      return {
+        ...prevNote,
+        [name]: value
+      };
+    });
+  }
 
   const incrementCount = () => {
     setCount(count + 1);
@@ -60,8 +72,8 @@ export default function Product() {
           </h4>
 
           <div className="flex flex-col">
-            <p className="border-b-2">Description</p>
-            <p>{isProduct && isProduct.description}</p>
+            <p className="border-b-2 pb-[7px]">Description</p>
+            <p className="pt-[5px]">{isProduct && isProduct.description}</p>
           </div>
         </div>
         <div
@@ -90,7 +102,7 @@ export default function Product() {
           </div>
           <div className="flex flex-col justify-start w-full gap-1">
             {expanded ? (
-              <input className="rounded-lg" placeholder="Take a note" />
+              <input className="rounded-lg" placeholder="Take a note" onChange={handleChange} />
             ) : null}
             <button
               className="text-[#2962ff] font-inter text-left text-sm"

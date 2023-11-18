@@ -72,6 +72,14 @@ exports.deleteData = async (req, res, next) => {
   });
 };
 
+exports.deleteAllData = async (req,res,next)=>{
+  await prisma.product.deleteMany({});
+
+  res.status(200).json({
+    status: "success",
+  });
+}
+
 exports.updateData = async (req, res, next) => {
   console.log(req.params.id);
   console.log(req.body.image);
