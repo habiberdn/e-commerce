@@ -11,7 +11,4 @@ router
   
 router.route('/:id').patch(productController.updateData).get(productController.getOne).delete(productController.deleteData);
 
-
-
-
 module.exports = router;
