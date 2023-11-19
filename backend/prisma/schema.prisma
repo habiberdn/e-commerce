@@ -12,8 +12,8 @@ model User {
   created_at            DateTime? @default(now())
   passwordResetToken    String? 
   passwordResetExpires  DateTime?
-  rating                Rating?
-
+  rating                Rating[]
+ 
 }
 
 model Product {
@@ -33,10 +33,10 @@ model Rating{
   id                  Int       @id @default(autoincrement())
   review              String?
   rating              Int
-  created_at          DateTime @default(now())
-  author              User     @relation(fields: [user], references: [id])
-  user                Int     @unique
-  item             Product   @relation(fields: [product], references: [id])
+  created_at          DateTime  @default(now())
+  author              User      @relation(fields: [user], references: [id], onDelete: Cascade)
+  user                Int      
+  item                Product   @relation(fields: [product], references: [id], onDelete: Cascade)
   product             Int      
 }
 

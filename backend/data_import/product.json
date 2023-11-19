@@ -1,0 +1,87 @@
+[
+  
+  {
+    "name": "Laptop",
+    "description": "Powerful laptop with high-end specifications",
+    "price": 999.99,
+    "image": "Laptop.png",
+    "productCategory": "Electronic"
+  },
+  {
+    "name": "Smartwatch",
+    "description": "Fitness tracker and smartwatch in one",
+    "price": 199.99,
+    "image": "smartwatch.jpeg",
+    "productCategory": "Electronic"
+  },
+  {
+    "name": "Smartphone",
+    "description": "Latest smartphone with a stunning display",
+    "price": 599.99,
+    "image": "smartphone.jpeg",
+    "productCategory": "Electronic"
+  },
+  {
+    "name": "Camera",
+    "description": "High-quality DSLR camera for photography enthusiasts",
+    "price": 899.99,
+    "image": "camera.jpeg",
+    "productCategory": "Photography"
+  },
+  {
+    "name": "Tablet",
+    "description": "A versatile tablet with a high-definition screen and a variety of apps.",
+    "price": 299.99,
+    "image": "tablet.jpeg",
+    "productCategory": "Electronic"
+  },
+  {
+    "name": "Gaming Console",
+    "description": "A high-performance gaming console for the ultimate gaming experience.",
+    "price": 499.99,
+    "image": "gaming_console.jpeg",
+    "productCategory": "Electronic"
+  },
+  {
+    "name": "Bluetooth Speaker",
+    "description": "Portable Bluetooth speaker with excellent sound quality for on-the-go music.",
+    "price": 79.99,
+    "image": "bluetooth_speaker.jpeg",
+    "productCategory": "Electronic"
+  },
+  {
+    "name": "Smart Home Hub",
+    "description": "Control your smart home devices with this central hub for automation.",
+    "price": 129.99,
+    "image": "smart_home_hub.jpeg",
+    "productCategory": "Electronic"
+  },
+  {
+    "name": "Women's Jeans",
+    "description": "Classic denim jeans for a timeless look.",
+    "price": 49.99,
+    "image": "womens_jeans.jpeg",
+    "productCategory": "Fashion"
+  },
+  {
+    "name": "Men's Suit",
+    "description": "A stylish suit for formal occasions.",
+    "price": 199.99,
+    "image": "mens_suit.jpeg",
+    "productCategory": "Fashion"
+  },
+  {
+    "name": "Sportswear Shorts",
+    "description": "Comfortable shorts for sports and workouts.",
+    "price": 29.99,
+    "image": "sportswear_shorts.jpg",
+    "productCategory": "Fashion"
+  },
+  {
+    "name": "Winter Coat",
+    "description": "Warm and stylish coat for cold winter days.",
+    "price": 79.99,
+    "image": "Winter Coat.jpg",
+    "productCategory": "Fashion"
+  }
+]

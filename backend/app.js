@@ -13,7 +13,6 @@ app.use(express.json({ limit: '10kb' }));
 app.set('views', path.join(__dirname, 'src'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 app.use('/api/v1/users',userRouter)
 app.use('/api/v1/rating',ratingRouter)
 

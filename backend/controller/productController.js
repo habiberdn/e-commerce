@@ -1,6 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-const catchAsync = require("../utils/catchAsync");
 
 exports.createData = async (req, res, next) => {
   try {
@@ -25,8 +24,18 @@ exports.createData = async (req, res, next) => {
 };
 
 exports.getAllData = async (req, res, next) => {
-  const getData = await prisma.product.findMany();
+  const getData = await prisma.product.findMany({
+    include: {
+      review: true,
+    },
+    orderBy:[
+      {
+        id:'asc'
+      }
+    ]
 
+  });
+  
   res.status(200).json({
     status: "success",
     getData,
@@ -40,9 +49,9 @@ exports.getOne = async (req, res, next) => {
       where: {
         id: parseInt(paramsID),
       },
-       include:{
-      review:true
-    }
+      include: {
+        review: true,
+      },
     });
     res.status(200).json({
       status: "success",
@@ -95,7 +104,7 @@ exports.updateData = async (req, res, next) => {
       productCategory: req.body.productCategory,
       description: req.body.description,
       price: req.body.price,
-      image: req.body.image
+      image: req.body.image,
     },
   });
   res.status(200).json({
