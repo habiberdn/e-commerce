@@ -27,7 +27,6 @@ export default function PhotographyCat() {
       [isData]
     );
   });
-  console.log(isData);
   return (
     <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 ">
       <Navbar />
@@ -70,6 +69,7 @@ export default function PhotographyCat() {
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               {Object.keys(isData).map((key) => {
+                console.log(isData[key])
                 return (
                   <Grid item xs={3} className="">
                     <div className="flex justify-center  items-center h-full ">
@@ -80,7 +80,7 @@ export default function PhotographyCat() {
                           description={isData[key].description}
                           price={isData[key].price}
                           image={isData[key].image}
-                          rating={isData[key].rating}
+                          ratingsAverage={isData[key].ratingsAverage}
                         />
                       </Item>
                     </div>

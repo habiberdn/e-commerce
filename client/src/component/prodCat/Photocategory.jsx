@@ -80,7 +80,7 @@ export default function PhotographyCat() {
                          description={isData[key].description}
                          price={isData[key].price}
                          image={isData[key].image}
-                         rating={isData[key].rating}
+                         ratingsAverage={isData[key].ratingsAverage}
                         />
                       </Item>
                     </div>

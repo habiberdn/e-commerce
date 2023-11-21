@@ -58,6 +58,7 @@ export default function Home() {
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={1} className="">
             {isData?.map((value) => {
+              console.log(value.ratingsAverage)
               return (
                 <Grid item xs={2}>
                   <div className="flex justify-center ml-[5px] items-center h-full w-full">
@@ -69,7 +70,7 @@ export default function Home() {
                           description={value.description}
                           price={value.price}
                           image={value.image}
-                          rating={value.rating}
+                          ratingsAverage={value.ratingsAverage}
                         />
                       </div>
                     </Item>

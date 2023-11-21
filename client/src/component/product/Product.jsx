@@ -8,18 +8,18 @@ export default function Product() {
   const [isProduct, setProduct] = useState();
   const [count, setCount] = useState(1);
   const [expanded, setExpanded] = useState(false);
-  const [content,setContent] = useState()
+  const [content, setContent] = useState();
 
-  const handleChange = (event)=>{
+  const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setContent(prevNote => {
+    setContent((prevNote) => {
       return {
         ...prevNote,
-        [name]: value
+        [name]: value,
       };
     });
-  }
+  };
 
   const incrementCount = () => {
     setCount(count + 1);
@@ -65,7 +65,11 @@ export default function Product() {
                 fill="rgba(255,185,0,1)"
               ></path>
             </svg>{" "}
-            <h4 className="font-inter">{isProduct && isProduct.rating}</h4>
+            <h4 className="font-inter">
+              {isProduct && isProduct.ratingsAverage
+                ? isProduct.ratingsAverage
+                : 0}
+            </h4>
           </div>
           <h4 className="text-3xl font-inter">
             ${isProduct && isProduct.price}
@@ -79,9 +83,7 @@ export default function Product() {
         <div
           className={
             "w-[16rem] flex flex-col rounded-xl ml-[2rem] border border-[#8E8E8E] p-[7px] gap-2" +
-          ( expanded
-              ? " h-[14.5rem]"
-              : " h-[12rem]")
+            (expanded ? " h-[14.5rem]" : " h-[12rem]")
           }
         >
           <p>Set Amount and Note</p>
@@ -102,7 +104,11 @@ export default function Product() {
           </div>
           <div className="flex flex-col justify-start w-full gap-1">
             {expanded ? (
-              <input className="rounded-lg" placeholder="Take a note" onChange={handleChange} />
+              <input
+                className="rounded-lg"
+                placeholder="Take a note"
+                onChange={handleChange}
+              />
             ) : null}
             <button
               className="text-[#2962ff] font-inter text-left text-sm"
@@ -123,7 +129,7 @@ export default function Product() {
       </div>
       <div className=" flex gap-5 p-[30px] bg-[#ffff] ml-[1.6rem] mt-[1rem]">
         <div className="flex flex-col">
-        <h4 className="font-inter text-lg">Review</h4>
+          <h4 className="font-inter text-lg">Review</h4>
         </div>
       </div>
     </div>
