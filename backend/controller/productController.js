@@ -52,6 +52,7 @@ exports.getOne = async (req, res, next) => {
       include: {
         review: true,
       },
+     
     });
     res.status(200).json({
       status: "success",
@@ -62,6 +63,11 @@ exports.getOne = async (req, res, next) => {
       where: {
         productCategory: paramsID,
       },
+      orderBy:[
+        {
+          id:'asc'
+        }
+      ]
     });
 
     res.status(200).json({

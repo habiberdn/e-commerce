@@ -1,5 +1,4 @@
 const { PrismaClient } = require("@prisma/client");
-const { get } = require("http");
 const prisma = new PrismaClient();
 
 exports.ratingQuantity = async (req, res, next) => {
@@ -19,6 +18,8 @@ exports.ratingQuantity = async (req, res, next) => {
       },
       _count: {
         rating: true,
+        review: true,
+
       },
       orderBy:{
         product:"asc"
@@ -28,19 +29,27 @@ exports.ratingQuantity = async (req, res, next) => {
       where: { id: val.product },
       data: {
         ratingsQuantity: stats._count.rating,
-        ratingsAverage: stats._avg.rating
+        ratingsAverage: stats._avg.rating,
+        ReviewQuantity:stats._count.review,
       },
     });
-    // console.log(val.product)
-    // console.log(stats._avg)
-    // console.log(stats._count)
-
   });
-  
-
-   
-
-   
-  
   next();
 };
+
+exports.ratings = async(req,res,next)=>{
+  const getData = await prisma.rating.findMany({
+    where:{
+      product:parseInt(req.params.product)
+    },
+    orderBy:[
+      {
+        id:'asc'
+      }
+    ]
+  });
+  res.status(200).json({
+    status:"Success",
+    getData
+  })
+}

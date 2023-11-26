@@ -24,7 +24,6 @@ exports.createData = async (req, res, next) => {
                 product:req.body.product
             }
         })
-        // await middleware.ratingQuantity(cre)
         res.status(201).json({
             status: "Success",
             create,
@@ -33,6 +32,8 @@ exports.createData = async (req, res, next) => {
         console.log(err)
     }
 }
+
+
 
 exports.delete = async (req, res, next) => {
      await prisma.product.deleteMany({});

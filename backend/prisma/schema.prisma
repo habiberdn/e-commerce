@@ -26,6 +26,7 @@ model Product {
   productCategory     Category? 
   ratingsAverage      Float?   
   ratingsQuantity     Int?      @default(0)
+  ReviewQuantity      Int?      @default(0)
   review              Rating[]  
 }
 

@@ -19,14 +19,16 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function PhotographyCat() {
   const [isData, setData] = useState("");
+
   useEffect(() => {
-    axios.get(`http://127.0.0.1:3001/api/v1/product/Electronic`).then(
+     axios.get(`http://127.0.0.1:3001/api/v1/product/Electronic`).then(
       (response) => {
         setData(response.data.getData);
       },
       [isData]
     );
   });
+  // console.log(isData)
   return (
     <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 ">
       <Navbar />
@@ -69,7 +71,7 @@ export default function PhotographyCat() {
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               {Object.keys(isData).map((key) => {
-                console.log(isData[key])
+                // console.log(isData[key]);
                 return (
                   <Grid item xs={3} className="">
                     <div className="flex justify-center  items-center h-full ">

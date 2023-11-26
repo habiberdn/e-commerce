@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../home/navbar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import RatingStats from "../utils/ratingStats";
 
 export default function Product() {
   let params = useParams();
@@ -9,10 +10,12 @@ export default function Product() {
   const [count, setCount] = useState(1);
   const [expanded, setExpanded] = useState(false);
   const [content, setContent] = useState();
+  const [rating, setRating] = useState({});
+  const [isRating, setValRating] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setContent((prevNote) => {
       return {
         ...prevNote,
@@ -24,6 +27,7 @@ export default function Product() {
   const incrementCount = () => {
     setCount(count + 1);
   };
+
   const decrementCount = () => {
     count > 1 && setCount(count - 1);
   };
@@ -32,14 +36,39 @@ export default function Product() {
     setExpanded(!expanded);
   }
 
-  console.log(isProduct);
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:3001/api/v1/rating/${params.product}`)
+      .then((response) => {
+        setRating(response.data.getData);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
+  }, []);
+  console.log(rating);
+  useEffect(() => {
+    if (!loading) {
+      Object.keys(rating).forEach((val) => setValRating(rating[val].rating));
+    }
+  }, [rating, loading]);
+  console.log(isRating);
+  // useEffect(() => {
+  //   Object.keys(rating && rating).forEach((val) => {
+  //     setValRating(rating[val]); // Updates state (asynchronous)
+  //     console.log('Updated state:', isRating);
+  //   });
+  // }, [rating]);
+
   useEffect(() => {
     axios
       .get(`http://127.0.0.1:3001/api/v1/product/${params.product}`)
       .then((response) => {
         setProduct(response.data.getData);
       });
-  });
+  }, []);
 
   return (
     <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 overflow-x-hidden">
@@ -68,7 +97,8 @@ export default function Product() {
             <h4 className="font-inter">
               {isProduct && isProduct.ratingsAverage
                 ? isProduct.ratingsAverage
-                : 0}
+                : 0}{" "}
+              ({isProduct ? isProduct.ratingsQuantity : 0})
             </h4>
           </div>
           <h4 className="text-3xl font-inter">
@@ -82,8 +112,8 @@ export default function Product() {
         </div>
         <div
           className={
-            "w-[16rem] flex flex-col rounded-xl ml-[2rem] border border-[#8E8E8E] p-[7px] gap-2" +
-            (expanded ? " h-[14.5rem]" : " h-[12rem]")
+            "w-[16rem] flex flex-col rounded-xl ml-[4rem] border border-[#8E8E8E] p-[7px] gap-3" +
+            (expanded ? " h-[16rem]" : " h-[12.5rem]")
           }
         >
           <p>Set Amount and Note</p>
@@ -128,8 +158,41 @@ export default function Product() {
         </div>
       </div>
       <div className=" flex gap-5 p-[30px] bg-[#ffff] ml-[1.6rem] mt-[1rem]">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-1 ">
           <h4 className="font-inter text-lg">Review</h4>
+          <div className="flex gap-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="w-[15px]"
+            >
+              <path
+                d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z"
+                fill="rgba(255,185,0,1)"
+              ></path>
+            </svg>{" "}
+            <div className="text-2xl">
+              {isProduct && isProduct.ratingsAverage
+                ? isProduct.ratingsAverage
+                : 0}
+            </div>
+          </div>
+          <div>
+            <h4 className="text-sm mb-3">
+              {" "}
+              {isProduct && isProduct.ratingsQuantity
+                ? isProduct.ratingsQuantity
+                : 0}{" "}
+              Rating{" "}
+              {isProduct && isProduct.ReviewQuantity
+                ? isProduct.ReviewQuantity
+                : 0}{" "}
+              Review{" "}
+            </h4>
+          </div>
+          <div>
+            <RatingStats length={rating && rating.length} rating={isRating} />
+          </div>
         </div>
       </div>
     </div>
