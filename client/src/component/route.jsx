@@ -1,8 +1,8 @@
 import React from "react";
 import Login from "./auth/login";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import CategoryPhoto from "./prodCat/PhotoCategory";
-import CategoryElec from "./prodCat/ElecCategory";
+import CategoryPhoto from "./prodCat/Photocategory";
+import CategoryElec from "./prodCat/Eleccategory";
 import CategoryFashion from './prodCat/FashionCategory'
 import Default from "./app";
 import Product from './product/Product'

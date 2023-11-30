@@ -4,13 +4,13 @@ export default function Card(props) {
   // console.log(props);
   return (
     <div className="rounded-lg  ">
-      <div className="relative w-[10rem] h-[17rem] flex flex-col flex-start rounded-lg ">
+      <div className="relative w-[11rem] h-[18rem] flex flex-col flex-start rounded-lg ">
         <a href={"/" + props.id}>
           <div className="mb-2 flex justify-center">
             <img
               src={require(`../../image/${props.image}`)}
               alt=""
-              className="rounded-lg w-[9.5rem] h-[8rem]   "
+              className="rounded-lg w-[10.5rem] h-[8.5rem]   "
             />
           </div>
           <div className="grid gap-y-1">

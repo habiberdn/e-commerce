@@ -62,16 +62,15 @@ export default function PhotographyCat() {
           </div>
         </div>
         <div className="flex flex-col mr-[1rem]">
-          <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[53.5rem] h-[3rem] rounded-lg">
-            <div className="flex justify-start items-center gap-4 ">
+          <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[58.5rem] h-[3rem] rounded-lg">
+            <div className="flex justify-start items-center gap-4">
               <p className="font-dmsans">Sort</p>
               <Dropdown />
             </div>
           </div>
           <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
+            <Grid container spacing={3}>
               {Object.keys(isData).map((key) => {
-                // console.log(isData[key]);
                 return (
                   <Grid item xs={3} className="">
                     <div className="flex justify-center  items-center h-full ">

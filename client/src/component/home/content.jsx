@@ -27,32 +27,44 @@ export default function Home() {
   }, [isData]);
 
   return (
-    <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 ">
+    <div className="flex flex-col  bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-3 ">
       <Slide />
 
-      <div className="ml-[1.1rem] w-full h-[6rem] ">
-        <div className="flex justify-center h-full items-center gap-6">
-          <div className="flex flex-col">
-          <a href="/category/Electronic" className=" rounded-xl p-[8px] bg-[#FFFF] h-[3.5rem] w-[3.5rem] flex justify-center items-center">
-            <img className="z-0" src={Elektronik} alt="" width={50}  />
-          </a>
+      <div className="flex justify-start ml-[0.5rem] h-full">
+        <p className="ml-[1.3rem] text-lg font-inter pt-[5px]">
+          Category
+        </p>
+      </div>
+      <div className="flex justify-center ">
+        <div className="w-[20%] ml-[1.5rem] flex justify-center items-center gap-5 h-[8rem] ">
+          <div className="flex flex-col justify-center items-center gap-1">
+            <a href="/category/Electronic" className=" rounded-xl p-[8px] bg-[#FFFF] h-[3.5rem] w-[4rem] flex justify-center items-center">
+              <img className="z-0" src={Elektronik} alt="" width={50} />
+            </a>
+            <p className="font-inter">Electronic</p>
+
           </div>
-          <div className="flex flex-col">
-          <a  href="/category/Fashion" className=" rounded-xl p-[8px] bg-[#FFFF] h-[3.5rem] w-[3.5rem] flex justify-center items-center">
-            <img className="z-0" src={Fashion} alt="" width={50} />
-          </a>
+          <div className="flex flex-col justify-center items-center gap-1">
+            <a href="/category/Fashion" className=" rounded-xl p-[8px] bg-[#FFFF] h-[3.5rem] w-[4rem] flex justify-center items-center">
+              <img className="z-0" src={Fashion} alt="" width={50} />
+            </a>
+            <p className="font-inter">Fashion</p>
+
           </div>
-          <div className="flex flex-col">
-          <a href="/category/Photography" className=" rounded-xl p-[8px] bg-[#FFFF] h-[3.5rem] w-[3.5rem] flex justify-center items-center">
-            <img className="z-0" src={Camera} alt="" width={50} />
-          </a>
+          <div className="flex flex-col justify-center items-center gap-1">
+            <a href="/category/Photography" className=" rounded-xl p-[8px] bg-[#FFFF] h-[3.5rem] w-[4rem] flex justify-center items-center">
+              <img className="z-0" src={Camera} alt="" width={50} />
+            </a>
+            <p className="font-dsans">Photography</p>
+
           </div>
         </div>
+
       </div>
       <div className="flex flex-col">
-        <div className="flex justify-center h-full">
-          <p className="ml-[1.3rem] text-lg font-montserrat pt-[5px]">
-            <b>For You</b>
+        <div className="flex justify-start ml-[0.5rem] h-full">
+          <p className="ml-[1.3rem] text-lg font-inter pt-[5px]">
+            For You
           </p>
         </div>
         <Box sx={{ flexGrow: 1 }}>

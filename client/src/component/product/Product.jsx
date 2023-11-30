@@ -11,8 +11,41 @@ export default function Product() {
   const [expanded, setExpanded] = useState(false);
   const [content, setContent] = useState();
   const [rating, setRating] = useState({});
-  const [isRating, setValRating] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [valRating, setValRating] = useState({})
+  const [review,setReview] = useState()
+
+
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:3001/api/v1/rating/${params.product}`)
+      .then((response) => {
+        setRating(response.data.getData);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
+  }, []);
+  useEffect(() => {
+    const allRatings = Object.values(rating).map((rating) => rating.rating);
+    return setValRating(allRatings)
+
+  }, [rating])
+console.log(review)
+  useEffect(() => {
+    const allReview = Object.values(rating).map((rating) => rating.review);
+    return setReview(allReview)
+
+  }, [rating])
+
+
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:3001/api/v1/product/${params.product}`)
+      .then((response) => {
+        setProduct(response.data.getData);
+      });
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -35,85 +68,54 @@ export default function Product() {
   function expand() {
     setExpanded(!expanded);
   }
-
-  useEffect(() => {
-    axios
-      .get(`http://127.0.0.1:3001/api/v1/rating/${params.product}`)
-      .then((response) => {
-        setRating(response.data.getData);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      });
-  }, []);
-  console.log(rating);
-  useEffect(() => {
-    if (!loading) {
-      Object.keys(rating).forEach((val) => setValRating(rating[val].rating));
-    }
-  }, [rating, loading]);
-  console.log(isRating);
-  // useEffect(() => {
-  //   Object.keys(rating && rating).forEach((val) => {
-  //     setValRating(rating[val]); // Updates state (asynchronous)
-  //     console.log('Updated state:', isRating);
-  //   });
-  // }, [rating]);
-
-  useEffect(() => {
-    axios
-      .get(`http://127.0.0.1:3001/api/v1/product/${params.product}`)
-      .then((response) => {
-        setProduct(response.data.getData);
-      });
-  }, []);
-
   return (
     <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 overflow-x-hidden">
       <Navbar />
       <div className=" flex gap-5 p-[30px] bg-[#ffff] ml-[1.6rem] mt-[1rem]">
-        <div className="">
-          <img
-            src={isProduct && require(`../../image/${isProduct.image}`)}
-            className="w-[23rem] border h-[21rem]"
-            alt="Product"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <h4 className="font-inter text-xl">{isProduct && isProduct.name}</h4>
-          <div className="flex gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className="w-[15px]"
-            >
-              <path
-                d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z"
-                fill="rgba(255,185,0,1)"
-              ></path>
-            </svg>{" "}
-            <h4 className="font-inter">
-              {isProduct && isProduct.ratingsAverage
-                ? isProduct.ratingsAverage
-                : 0}{" "}
-              ({isProduct ? isProduct.ratingsQuantity : 0})
-            </h4>
-          </div>
-          <h4 className="text-3xl font-inter">
-            ${isProduct && isProduct.price}
-          </h4>
+        <div className="flex gap-5 ">
 
-          <div className="flex flex-col">
-            <p className="border-b-2 pb-[7px]">Description</p>
-            <p className="pt-[5px]">{isProduct && isProduct.description}</p>
+          <div className="">
+            <img
+              src={isProduct && require(`../../image/${isProduct.image}`)}
+              className="w-[23rem] border h-[23rem]"
+              alt="Product"
+            />
           </div>
+          <div className="flex flex-col gap-2  w-[26rem] ">
+            <h4 className="font-inter text-xl">{isProduct && isProduct.name}</h4>
+            <div className="flex gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="w-[15px]"
+              >
+                <path
+                  d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z"
+                  fill="rgba(255,185,0,1)"
+                ></path>
+              </svg>{" "}
+              <h4 className="font-inter">
+                {isProduct && isProduct.ratingsAverage
+                  ? isProduct.ratingsAverage
+                  : 0}{" "}
+                ({isProduct ? isProduct.ratingsQuantity : 0})
+              </h4>
+            </div>
+            <h4 className="text-3xl font-inter">
+              ${isProduct && isProduct.price}
+            </h4>
+
+            <div className="flex flex-col w-[25rem]">
+              <p className="border-b-2 pb-[7px]">Description</p>
+              <p className="pt-[5px]">{isProduct && isProduct.description}</p>
+            </div>
+          </div>
+
         </div>
         <div
           className={
-            "w-[16rem] flex flex-col rounded-xl ml-[4rem] border border-[#8E8E8E] p-[7px] gap-3" +
-            (expanded ? " h-[16rem]" : " h-[12.5rem]")
+            "w-[16rem] flex flex-col float-right rounded-xl ml-[4rem] border border-[#8E8E8E] p-[7px] gap-3 static" +
+            (expanded ? " h-[16rem]" : " h-[12.5rem] ")
           }
         >
           <p>Set Amount and Note</p>
@@ -127,7 +129,7 @@ export default function Product() {
             </div>
           </div>
           <div className="flex justify-between">
-            <p className="font-inter">Subtotal </p>
+            <p className="font-inter">Subtotal</p>
             <p className="font-inter">
               ${isProduct && (isProduct.price * count).toFixed(2)}
             </p>
@@ -141,7 +143,7 @@ export default function Product() {
               />
             ) : null}
             <button
-              className="text-[#2962ff] font-inter text-left text-sm"
+              className="text-[#2962ff] font-inter text-left text-sm "
               onClick={expand}
             >
               <b>{expanded ? "Cancel Note" : "Add Note"} </b>
@@ -191,8 +193,28 @@ export default function Product() {
             </h4>
           </div>
           <div>
-            <RatingStats length={rating && rating.length} rating={isRating} />
+            <RatingStats length={rating && rating.length} rating={valRating} />
           </div>
+        </div>
+        <div className=" border mt-[1rem] w-full  flex flex-col">
+          {valRating.length > 0 ?
+            
+            <div className="border flex ml-[20px]  w-[20rem]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="w-[15px] h-[2rem]"
+              >
+                <path
+                  d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z"
+                  fill="rgba(255,185,0,1)"
+                >
+                </path>
+              </svg>
+              
+            </div>
+            : <p className="w-[full] text-gray-500 h-full flex justify-center items-center">Don't have any review!</p>}
+
         </div>
       </div>
     </div>
