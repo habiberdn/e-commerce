@@ -19,6 +19,13 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function PhotographyCat() {
   const [isData, setData] = useState("");
+  const [flag,setFlag] = useState()
+
+  const handleFlag = (newFlag)=>{
+    setFlag(prev =>{
+      return [...prev,newFlag]
+    })
+  }
 
   useEffect(() => {
      axios.get(`http://127.0.0.1:3001/api/v1/product/Electronic`).then(
@@ -62,10 +69,10 @@ export default function PhotographyCat() {
           </div>
         </div>
         <div className="flex flex-col mr-[1rem]">
-          <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[58.5rem] h-[3rem] rounded-lg">
+          <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[59rem] h-[3rem] rounded-lg">
             <div className="flex justify-start items-center gap-4">
               <p className="font-dmsans">Sort</p>
-              <Dropdown />
+              <Dropdown flag={handleFlag}/>
             </div>
           </div>
           <Box sx={{ flexGrow: 1 }}>

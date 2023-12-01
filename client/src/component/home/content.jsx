@@ -68,7 +68,7 @@ export default function Home() {
           </p>
         </div>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={1} className="">
+          <Grid container spacing={1}>
             {isData?.map((value) => {
               console.log(value.ratingsAverage)
               return (

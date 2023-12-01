@@ -25,9 +25,9 @@ exports.createData = async (req, res, next) => {
 
 exports.getAllData = async (req, res, next) => {
   const getData = await prisma.product.findMany({
-    include: {
-      review: true,
-    },
+    // include: {
+    //   review: true,
+    // },
     orderBy:[
       {
         id:'asc'

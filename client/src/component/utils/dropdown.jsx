@@ -6,6 +6,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+const handleButton = ()=>{
+    
+}
+
 export default function Example() {
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -29,28 +33,27 @@ export default function Example() {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <button
+                  
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? 'bg-gray-100 text-gray-900 ' : 'text-gray-700',
+                    'block px-4 py-2 text-sm w-full text-left'
                   )}
                 >
                   Newest
-                </a>
+                </button>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <button
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    'block px-4 py-2 text-sm w-full text-left'
                   )}
                 >
                   Latest
-                </a>
+                </button>
               )}
             </Menu.Item>
            

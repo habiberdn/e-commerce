@@ -6,7 +6,11 @@ const bcrypt = require("bcryptjs");
 
 exports.getAllUser = async (req, res, next) => {
   try {
-    const users = await prisma.user.findMany();
+    const users = await prisma.user.findMany({
+      include:{
+        rating:true
+      }
+    });
 
     res.status(200).json({
       status: "Success",
