@@ -23,7 +23,7 @@ export default function Card(props) {
             <h6 className="text-left w-full ">
               <b className="text-[#ff7f17]">${props.price}</b>
             </h6>
-            <div className="flex w-[55px] gap-1   ">
+            <div className="flex w-[5rem]   ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -34,8 +34,8 @@ export default function Card(props) {
                   fill="rgba(255,185,0,1)"
                 ></path>
               </svg>{" "}
-              <div className=" w-[3rem]] flex flex-start ">
-                <div>{props.ratingsAverage ? props.ratingsAverage : 0}</div>
+              <div className=" w-[3.5rem]] flex flex-start ">
+                <div className="w-[3rem] flex flex-start pl-[3px]">{props.ratingsAverage ? props.ratingsAverage : 0}({props.ratingsQuantity})</div>
               </div>
             </div>
           </div>

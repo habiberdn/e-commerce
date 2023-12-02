@@ -27,13 +27,12 @@ export default function Product() {
         console.error("Error fetching data:", error);
       });
   }, []);
+  
   useEffect(() => {
     const allRatings = Object.values(rating).map((rating) => rating.rating);
     return setValRating(allRatings)
 
   }, [rating])
-
-
 
   useEffect(() => {
     axios

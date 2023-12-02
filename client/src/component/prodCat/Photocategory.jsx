@@ -73,14 +73,15 @@ export default function PhotographyCat() {
                 return (
                   <Grid item xs={3} className="">
                     <div className="flex justify-center  items-center h-full ">
-                      <Item className="flex justify-center items-center  mr-[2.5rem] h-full mt-4 rounded-xl ">
+                      <Item className="flex justify-center items-center  mr-[2.5rem] h-full mt-4 rounded-xl ml-[2.2rem]">
                         <Card
-                         id={isData[key].id}
-                         name={isData[key].name}
-                         description={isData[key].description}
-                         price={isData[key].price}
-                         image={isData[key].image}
-                         ratingsAverage={isData[key].ratingsAverage}
+                          id={isData[key].id}
+                          name={isData[key].name}
+                          description={isData[key].description}
+                          price={isData[key].price}
+                          image={isData[key].image}
+                          ratingsAverage={isData[key].ratingsAverage}
+                          ratingsQuantity={isData[key].ratingsQuantity}
                         />
                       </Item>
                     </div>
