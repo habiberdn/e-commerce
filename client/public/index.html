@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style src="../src/input.css"></style>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
-    <link href="../dist/output.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <style type="text/tailwindcss">
-      @layer utilities {
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style src="../src/input.css"></style>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+  <meta name="description" content="E-commerce">
+ 
+  <style type="text/tailwindcss">
+    @layer utilities {
         .content-auto {
           content-visibility: auto;
         }
       }
     </style>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-  </head>
-  <body>
-    <div id="root"></div>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+</head>
 
-    <style src="../src/index.js"></style>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script type="module">
-      import swiper from "https://cdn.jsdelivr.net/npm/swiper@11.0.3/+esm";
-    </script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily:{
-              poppins:['Poppins'],
-              montserrat:['Montserrat'],
-              dmsans:['DM Sans'],
-              inter:['Inter']
-            }
+<body>
+  <div id="root"></div>
+  <style src="../src/index.js"></style>
+  <script type="module">
+    import swiper from "https://cdn.jsdelivr.net/npm/swiper@11.0.3/+esm";
+  </script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins'],
+            montserrat: ['Montserrat'],
+            dmsans: ['DM Sans'],
+            inter: ['Inter']
           }
         }
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>

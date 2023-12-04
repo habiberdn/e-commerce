@@ -9,7 +9,7 @@ router
   .route("/")
   // .get(middleware.ratingQuantity)
   .get(productController.getAllData)
-  .post(productController.createData)
+  .post(middleware.resizeImage,productController.createData)
   .delete(productController.deleteAllData)
   
 

@@ -1,28 +1,34 @@
 import React from "react";
 
 export default function Card(props) {
-  // console.log(props);
+  console.log(props.image);
   return (
     <div className="rounded-lg  ">
-      <div className="relative w-[11rem] h-[18rem] flex flex-col flex-start rounded-lg ">
+      <div className="relative w-[11rem] h-[18.5rem] flex flex-col flex-start rounded-lg ">
         <a href={"/" + props.id}>
           <div className="mb-2 flex justify-center">
             <img
+              alt="image"
               src={require(`../../image/${props.image}`)}
-              alt=""
-              className="rounded-lg w-[10.5rem] h-[8.5rem]   "
+              // sizes="(max-width: 600px) 300px,
+              // (max-width: 900px) 600px,
+              // 900px"
+              className="rounded-lg w-[10.5rem] h-[9.5rem] "
+              loading="lazy"
+            
+              aria-label="image"
             />
           </div>
           <div className="grid gap-y-1">
-            <h4 className="font-poppins flex flex-start">{props.name}</h4>
-            <h6 className="flex text-left w-full h-[59px] text-ellipsis overflow-hidden  ">
+            <h1 className="font-poppins flex flex-start">{props.name}</h1>
+            <h2 className="flex text-left w-full h-[59px] text-ellipsis overflow-hidden  ">
               {props.description}
-            </h6>
+            </h2>
           </div>
           <div className=" flex flex-col mt-2 gap-2 ">
-            <h6 className="text-left w-full ">
+            <h2 className="text-left w-full ">
               <b className="text-[#ff7f17]">${props.price}</b>
-            </h6>
+            </h2>
             <div className="flex w-[5rem]   ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,11 +1,27 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const sharp = require('sharp');
+
+exports.resizeImage = async(req, res, next) => {
+  const { image } = req.body
+
+  if (!image) next()
+
+  await sharp(image.buffer)
+  .resize(2000, 1333)
+  .toFormat('jpeg')
+  .jpeg({ quality: 90 })
+  .toFile(`client/src/image/${image}`);
+
+}
+
+
 
 exports.ratingQuantity = async (req, res, next) => {
   const getData = await prisma.rating.findMany({
-    orderBy:[
+    orderBy: [
       {
-        id:'asc'
+        id: 'asc'
       }
     ]
   });
@@ -21,8 +37,8 @@ exports.ratingQuantity = async (req, res, next) => {
         review: true,
 
       },
-      orderBy:{
-        product:"asc"
+      orderBy: {
+        product: "asc"
       }
     });
     await prisma.product.update({
@@ -30,26 +46,26 @@ exports.ratingQuantity = async (req, res, next) => {
       data: {
         ratingsQuantity: stats._count.rating,
         ratingsAverage: stats._avg.rating,
-        ReviewQuantity:stats._count.review,
+        ReviewQuantity: stats._count.review,
       },
     });
   });
   next();
 };
 
-exports.ratings = async(req,res,next)=>{
+exports.ratings = async (req, res, next) => {
   const getData = await prisma.rating.findMany({
-    where:{
-      product:parseInt(req.params.product)
+    where: {
+      product: parseInt(req.params.product)
     },
-    orderBy:[
+    orderBy: [
       {
-        id:'asc'
+        id: 'asc'
       }
     ]
   });
   res.status(200).json({
-    status:"Success",
+    status: "Success",
     getData
   })
 }

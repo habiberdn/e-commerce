@@ -28,14 +28,14 @@ export default function PhotographyCat() {
   }
 
   useEffect(() => {
-     axios.get(`http://127.0.0.1:3001/api/v1/product/Electronic`).then(
-      (response) => {
-        setData(response.data.getData);
-      },
-      [isData]
-    );
-  });
-  // console.log(isData)
+      axios.get(`http://127.0.0.1:3001/api/v1/product/Electronic`).then(
+       (response) => {
+         setData(response.data.getData);
+       },
+       [isData]
+     );
+  },[]);
+ 
   return (
     <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 ">
       <Navbar />

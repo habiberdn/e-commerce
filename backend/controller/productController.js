@@ -35,7 +35,7 @@ exports.getAllData = async (req, res, next) => {
     ]
 
   });
-  
+  res.header('Cache-Control', 'max-age=31536000, public');
   res.status(200).json({
     status: "success",
     getData,

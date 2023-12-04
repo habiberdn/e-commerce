@@ -26,7 +26,7 @@ export default function Product() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [params.product]);
   
   useEffect(() => {
     const allRatings = Object.values(rating).map((rating) => rating.rating);
@@ -60,7 +60,7 @@ export default function Product() {
       .then((response) => {
         setProduct(response.data.getData);
       });
-  }, []);
+  }, [params.product]);
 
   // const handleChange = (event) => {
   //   const { name, value } = event.target;
@@ -93,6 +93,7 @@ export default function Product() {
               src={Product && require(`../../image/${Product.image}`)}
               className="w-[23rem] border h-[23rem]"
               alt="Product"
+            
             />
           </div>
           <div className="flex flex-col gap-2  w-[26rem] ">

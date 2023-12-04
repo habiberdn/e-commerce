@@ -4,7 +4,7 @@ import "react-slideshow-image/dist/styles.css";
 import "../../input.css";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import p_1 from "../../image/p-1.jpeg";
+import p_1 from "../../image/p-1.webp";
 import p_2 from "../../image/shop.jpg";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";

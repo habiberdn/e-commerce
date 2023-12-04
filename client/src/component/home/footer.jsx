@@ -1,8 +1,8 @@
 import React from "react";
 import Visa from "../../image/Visa.png";
-import MasterCard from "../../image/Master Card.jpg";
-import Facebook from '../../image/facebook.jpg';
-import Instagram from '../../image/instagram.jpeg';
+import MasterCard from "../../image/Master Card.webp";
+import Facebook from '../../image/facebook.webp';
+import Instagram from '../../image/instagram.webp';
 import X_logo from '../../image/X_logo.jpg';
 
 
