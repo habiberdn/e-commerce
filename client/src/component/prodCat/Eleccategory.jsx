@@ -19,23 +19,23 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function PhotographyCat() {
   const [isData, setData] = useState("");
-  const [flag,setFlag] = useState()
+  const [flag, setFlag] = useState("")
 
-  const handleFlag = (newFlag)=>{
-    setFlag(prev =>{
-      return [...prev,newFlag]
+  function addFlag(newFlag) {
+    setFlag(() => {
+      return [newFlag]
     })
   }
-
+  const valueFlag = flag[0]
+  console.log(valueFlag && valueFlag.btn)
   useEffect(() => {
-      axios.get(`http://127.0.0.1:3001/api/v1/product/Electronic`).then(
-       (response) => {
-         setData(response.data.getData);
-       },
-       [isData]
-     );
-  },[]);
- 
+    axios.get(`http://127.0.0.1:3001/api/v1/product/Electronic/${valueFlag &&valueFlag.btn}`).then(
+      (response) => {
+        setData(response.data.getData);
+      },
+    );
+  }, [isData,valueFlag]);
+
   return (
     <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 ">
       <Navbar />
@@ -72,7 +72,7 @@ export default function PhotographyCat() {
           <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[59rem] h-[3rem] rounded-lg">
             <div className="flex justify-start items-center gap-4">
               <p className="font-dmsans">Sort</p>
-              <Dropdown flag={handleFlag}/>
+              <Dropdown flag={addFlag} />
             </div>
           </div>
           <Box sx={{ flexGrow: 1 }}>

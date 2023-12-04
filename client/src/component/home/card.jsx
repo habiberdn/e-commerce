@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Card(props) {
-  console.log(props.image);
   return (
     <div className="rounded-lg  ">
       <div className="relative w-[11rem] h-[18.5rem] flex flex-col flex-start rounded-lg ">
@@ -10,9 +9,9 @@ export default function Card(props) {
             <img
               alt="image"
               src={require(`../../image/${props.image}`)}
-              // sizes="(max-width: 600px) 300px,
-              // (max-width: 900px) 600px,
-              // 900px"
+              sizes="(max-width: 600px) 300px,
+              (max-width: 900px) 600px,
+              900px"
               className="rounded-lg w-[10.5rem] h-[9.5rem] "
               loading="lazy"
             

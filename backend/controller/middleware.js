@@ -2,21 +2,6 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const sharp = require('sharp');
 
-exports.resizeImage = async(req, res, next) => {
-  const { image } = req.body
-
-  if (!image) next()
-
-  await sharp(image.buffer)
-  .resize(2000, 1333)
-  .toFormat('jpeg')
-  .jpeg({ quality: 90 })
-  .toFile(`client/src/image/${image}`);
-
-}
-
-
-
 exports.ratingQuantity = async (req, res, next) => {
   const getData = await prisma.rating.findMany({
     orderBy: [

@@ -1,32 +1,32 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-// import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Example(props) {
-  // console.log(f)
-// const [flag,setFlag] = useState()
+  
+ const [flag,setFlag] = useState()
 
-  // const handleChange = (event)=>{
-  //   const { name, value } = event.target;
+   const handleButton = (e)=>{
+     e.preventDefault();
+     const { name, value } = e.target;
+     console.log({[name]:value})
+     setFlag(()=>{
+        return {
+          [name]:value
+        }
+     })
 
-  //   setFlag(prevNote => {
-  //     return {
-  //       ...prevNote,
-  //       [name]: value
-  //     };
-  //   });
-  // }
-  // // const handleButton = (e)=>{
-  //   e.preventDefault();
-  //   props.flag(flag)
+   }
+    useEffect(()=>{
+      props.flag(flag)
 
-  // }
-  // console.log(flag)
+    },[flag])
+   
   return (
     <Menu as="div" className="relative inline-block text-left">
         <Menu.Button className="inline-flex w-[14rem] justify-between gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
@@ -52,9 +52,9 @@ export default function Example(props) {
                     active ? 'bg-gray-100 text-gray-900 ' : 'text-gray-700',
                     'block px-4 py-2 text-sm w-full text-left'
                   )}
-                  value={"Newest"}
-                  // onChange={handleChange}
-                  // onClick={}
+                  value="Newest"
+                  name="btn"
+                  onClick={handleButton}
                 >
                   Newest
                 </button>
@@ -67,11 +67,9 @@ export default function Example(props) {
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm w-full text-left'
                   )}
-                  // onClick={handleButton}
-                  value={"Newest"}
-                  // onChange={handleChange}
-
-
+                  name="btn"
+                  onClick={handleButton}
+                  value="Latest"
                 >
                   Latest
                 </button>

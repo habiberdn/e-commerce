@@ -24,22 +24,45 @@ exports.createData = async (req, res, next) => {
 };
 
 exports.getAllData = async (req, res, next) => {
-  const getData = await prisma.product.findMany({
-    // include: {
-    //   review: true,
-    // },
-    orderBy:[
-      {
-        id:'asc'
-      }
-    ]
+  const params = req.params.sort;
+  console.log(params)
+  if (params === 'Newest') {
+    const getData = await prisma.product.findMany({
+      orderBy: [
+        {
+          created_at: 'desc'
+        }
+      ]
+    });
+    res.header('Cache-Control', 'max-age=31536000, public');
+    res.status(200).json({
+      status: "success",
+      getData,
+    });
+  }
+  else if (params === 'Latest') {
+    const getData = await prisma.product.findMany({
+      orderBy: [
+        {
+          created_at: 'asc'
+        }
+      ]
+    });
+    res.header('Cache-Control', 'max-age=31536000, public');
+    res.status(200).json({
+      status: "success",
+      getData,
+    });
+  } 
+  else {
+    const getData = await prisma.product.findMany({});
+    res.header('Cache-Control', 'max-age=31536000, public');
+    res.status(200).json({
+      status: "success",
+      getData,
+    });
+  }
 
-  });
-  res.header('Cache-Control', 'max-age=31536000, public');
-  res.status(200).json({
-    status: "success",
-    getData,
-  });
 };
 
 exports.getOne = async (req, res, next) => {
@@ -52,7 +75,7 @@ exports.getOne = async (req, res, next) => {
       include: {
         review: true,
       },
-     
+
     });
     res.status(200).json({
       status: "success",
@@ -63,9 +86,9 @@ exports.getOne = async (req, res, next) => {
       where: {
         productCategory: paramsID,
       },
-      orderBy:[
+      orderBy: [
         {
-          id:'asc'
+          id: 'asc'
         }
       ]
     });
