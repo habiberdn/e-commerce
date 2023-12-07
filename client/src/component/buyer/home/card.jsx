@@ -19,14 +19,14 @@ export default function Card(props) {
             />
           </div>
           <div className="grid gap-y-1">
-            <h1 className="font-poppins flex flex-start">{props.name}</h1>
-            <h2 className="flex text-left w-full h-[59px] text-ellipsis overflow-hidden  ">
+            <h1 className="font-dmsans flex flex-start"><b>{props.name}</b></h1>
+            <h2 className="flex text-left w-full h-[59px] font-dmsans text-ellipsis overflow-hidden  ">
               {props.description}
             </h2>
           </div>
           <div className=" flex flex-col mt-2 gap-2 ">
             <h2 className="text-left w-full ">
-              <b className="text-[#ff7f17]">${props.price}</b>
+              <b className="text-[#ff7f17] font-dmsans">${props.price}</b>
             </h2>
             <div className="flex w-[5rem]   ">
               <svg
@@ -40,7 +40,7 @@ export default function Card(props) {
                 ></path>
               </svg>{" "}
               <div className=" w-[3.5rem]] flex flex-start ">
-                <div className="w-[3rem] flex flex-start pl-[3px]">{props.ratingsAverage ? props.ratingsAverage : 0}({props.ratingsQuantity})</div>
+                <div className="w-[3rem] flex font-dmsans flex-start pl-[3px]">{props.ratingsAverage ? props.ratingsAverage : 0} ({props.ratingsQuantity ? props.ratingsQuantity : 0})</div>
               </div>
             </div>
           </div>

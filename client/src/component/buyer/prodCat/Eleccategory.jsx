@@ -37,12 +37,14 @@ export default function PhotographyCat() {
   }, [isData,valueFlag]);
 
   return (
-    <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 ">
+    <div className="flex flex-col">
       <Navbar />
+
+   <div className="flex flex-col bg-[#f1f2f2] mt-[5.5rem] pb-[2rem]  gap-2 ">
       <div className="ml-[1.6rem] w-full mt-[1.5rem] flex gap-24">
         <div className="flex flex-col gap-3">
           <div className="">
-            <h4 className="text-[#2962FF] flex gap-2 font-dmsans">
+            <h4 className=" text-[#2962FF] flex gap-2 font-dmsans">
               Home <p className="text-black">&gt;</p> Category
               <p className="text-black">&gt;</p> Electronic
             </h4>
@@ -101,5 +103,7 @@ export default function PhotographyCat() {
         </div>
       </div>
     </div>
+    </div>
+ 
   );
 }
