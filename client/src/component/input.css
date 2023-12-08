@@ -5,4 +5,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+    .content-auto {
+      content-visibility: auto;
+    }
+  }
 
+@layer components{
+    .__card {
+        @apply relative w-[11rem] h-[18.5rem] flex flex-col flex-start rounded-lg;
+    }
+}

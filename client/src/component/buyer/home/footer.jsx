@@ -49,7 +49,9 @@ export default function Footer() {
           <p className="">Follow Us </p>
         </b>
         <div className="flex gap-2">
-            <img src={Facebook} alt="" className="w-[2.5rem] h-[2rem] rounded-full"/>
+          <div className="w-[2.5rem] h-[2.5rem] relative overflow-hidden rounded-full ">
+            <img src={Facebook} alt="" className="w-full h-full object-cover object-center"/>
+          </div>
             <img src={Instagram} alt=""className="w-[3rem] h-[2rem] rounded-full" />
             <img src={X_logo} alt="" className="w-[2rem] h-[2rem] rounded-full"/>
         </div>
