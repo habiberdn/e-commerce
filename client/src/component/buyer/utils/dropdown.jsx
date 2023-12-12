@@ -23,7 +23,7 @@ export default function Example(props) {
 
    }
     useEffect(()=>{
-      props.flag(flag)
+      props.flag(flag && flag.btn)
 
     },[flag])
    

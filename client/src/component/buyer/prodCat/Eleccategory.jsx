@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function PhotographyCat() {
+export default function ElectronicCat() {
   const [isData, setData] = useState("");
   const [flag, setFlag] = useState("")
 
@@ -26,21 +26,28 @@ export default function PhotographyCat() {
       return [newFlag]
     })
   }
-  const valueFlag = flag[0]
-  console.log(valueFlag && valueFlag.btn)
+
+  const valueFlag = flag[0];
   useEffect(() => {
-    axios.get(`http://127.0.0.1:3001/api/v1/product/Electronic/${valueFlag &&valueFlag.btn}`).then(
-      (response) => {
-        setData(response.data.getData);
-      },
-    );
+    if(valueFlag){
+      axios.get(`http://127.0.0.1:3001/api/v1/product/Electronic/${valueFlag}`).then(
+        (response) => {
+          setData(response.data.getData);
+        },
+      );
+    }else{
+      axios.get(`http://127.0.0.1:3001/api/v1/product/Electronic`).then(
+        (response) => {
+          setData(response.data.getData);
+        },
+      );
+    }
   }, [isData,valueFlag]);
 
   return (
     <div className="flex flex-col">
       <Navbar />
-
-   <div className="flex flex-col bg-[#f1f2f2] mt-[5.5rem] pb-[2rem]  gap-2 ">
+   <div className="flex flex-col bg-[#f1f2f2] mt-[5.5rem] pb-[2rem] gap-2 ">
       <div className="ml-[1.6rem] w-full mt-[1.5rem] flex gap-24">
         <div className="flex flex-col gap-3">
           <div className="">

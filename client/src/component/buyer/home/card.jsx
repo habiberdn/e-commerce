@@ -3,7 +3,7 @@ import React from "react";
 export default function Card(props) {
   return (
     <div className="rounded-lg  ">
-      <div className="relative w-[11rem] h-[18.5rem] flex flex-col flex-start rounded-lg ">
+      <div className="relative w-[11rem] h-[19.5rem]  flex flex-col flex-start rounded-lg ">
         <a href={"/" + props.id}>
           <div className="mb-2 flex justify-center">
             <img
@@ -18,7 +18,7 @@ export default function Card(props) {
               aria-label="image"
             />
           </div>
-          <div className="grid gap-y-1">
+          <div className="grid gap-y-3">
             <h1 className="font-dmsans flex flex-start"><b>{props.name}</b></h1>
             <h2 className="flex text-left w-full h-[59px] font-dmsans text-ellipsis overflow-hidden  ">
               {props.description}

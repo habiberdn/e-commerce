@@ -21,7 +21,7 @@ const Navbar = () => {
                 />
             </div>
             <div className='pr-[2rem] flex gap-2  items-center'>
-                <img src={`${Default}`} alt="image" width={50} className='rounded-full' />
+                <img src={`${Default}`} alt="image" width={50} className='rounded-full ' />
                 <p className='font-dmsans'>Hkaolshop</p>
             </div>
         </div>

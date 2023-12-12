@@ -7,7 +7,6 @@ const middleware = require('../controller/middleware')
 router.use(middleware.ratingQuantity)
 router
   .route("/")
-  // .get(middleware.ratingQuantity)
   .get(productController.getAllData)
   .post(productController.createData)
   .delete(productController.deleteAllData)

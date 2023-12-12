@@ -17,32 +17,33 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function PhotographyCat() {
+export default function FashionCat() {
   const [isData, setData] = useState("");
   const [flag, setFlag] = useState("")
 
   function addFlag(newFlag) {
-    setFlag(() => {
+    setFlag((prev) => {
       return [newFlag]
     })
   }
-  const valueFlag = flag[0]
-  console.log(valueFlag && valueFlag.btn)
   useEffect(() => {
-    axios.get(`http://127.0.0.1:3001/api/v1/product/Fashion /${valueFlag && valueFlag.btn}`).then(
-      (response) => {
-        setData(response.data.getData);
-      },
-    );
-  }, [valueFlag]);
-  useEffect(() => {
-    axios.get(`http://127.0.0.1:3001/api/v1/product/Fashion`).then(
-      (response) => {
-        setData(response.data.getData);
-      },
-      [isData]
-    );
-  });
+    console.log(flag[0])
+    if(flag[0]){
+      axios.get(`http://127.0.0.1:3001/api/v1/product/Fashion/${flag[0]}`).then(
+        (response) => {
+          setData(response.data.getData);
+        },
+      );
+
+    }else{
+      axios.get(`http://127.0.0.1:3001/api/v1/product/Fashion`).then(
+        (response) => {
+          setData(response.data.getData);
+        },
+      );
+    }
+  }, [flag]);
+
   return (
     <div className="flex flex-col">
       <Navbar />
@@ -77,10 +78,10 @@ export default function PhotographyCat() {
             </div>
           </div>
           <div className="flex flex-col mr-[1rem]">
-            <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[53.5rem] h-[3rem] rounded-lg">
+            <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[58rem] h-[3rem] rounded-lg">
               <div className="flex justify-start items-center gap-4">
                 <p className="font-dmsans">Sort</p>
-                <Dropdown flag={addFlag} />
+                <Dropdown flag={addFlag}/>
               </div>
             </div>
             <Box sx={{ flexGrow: 1 }}>

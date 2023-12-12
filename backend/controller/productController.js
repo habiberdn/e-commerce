@@ -25,14 +25,19 @@ exports.createData = async (req, res, next) => {
 
 exports.getAllData = async (req, res, next) => {
   const params = req.params.sort;
-  console.log(params)
-  if (params === 'Newest') {
+  console.log(params) 
+  console.log(req.params.id)
+
+  if (params === 'Newest' && isNaN(req.params.id) ) {
     const getData = await prisma.product.findMany({
       orderBy: [
         {
           created_at: 'desc'
         }
-      ]
+      ],
+      where :{
+        productCategory : req.params.id
+      }
     });
     res.header('Cache-Control', 'max-age=31536000, public');
     res.status(200).json({
@@ -40,13 +45,17 @@ exports.getAllData = async (req, res, next) => {
       getData,
     });
   }
-  else if (params === 'Latest') {
+  else if (params === 'Latest' && isNaN(req.params.id)) {
+    console.log(req.params.id)
     const getData = await prisma.product.findMany({
       orderBy: [
         {
           created_at: 'asc'
-        }
-      ]
+        },
+      ],
+      where :{
+        productCategory : req.params.id
+      }
     });
     res.header('Cache-Control', 'max-age=31536000, public');
     res.status(200).json({

@@ -19,17 +19,36 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function PhotographyCat() {
   const [isData, setData] = useState("");
+  const [flag, setFlag] = useState("")
+
+  function addFlag(newFlag) {
+    setFlag(() => {
+      return [newFlag]
+    })
+  }
+
+  const valueFlag = flag[0];
   useEffect(() => {
-    axios.get(`http://127.0.0.1:3001/api/v1/product/Photography`).then(
-      (response) => {
-        setData(response.data.getData);
-      },
-      [isData]
-    );
+    if(valueFlag){
+      axios.get(`http://127.0.0.1:3001/api/v1/product/Photography/${valueFlag}`).then(
+        (response) => {
+          setData(response.data.getData);
+        },
+        [isData]
+      );
+    }else{
+      axios.get(`http://127.0.0.1:3001/api/v1/product/Photography`).then(
+        (response) => {
+          setData(response.data.getData);
+        },
+        [isData]
+      )
+    }
   });
   return (
-    <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 ">
+    <div className="flex flex-col">
       <Navbar />
+  <div className="flex flex-col bg-[#f1f2f2] mt-[3.7rem] pb-[2rem]  gap-2 ">
       <div className="ml-[1.6rem] w-full mt-[1.5rem] flex gap-24">
         <div className="flex flex-col gap-3">
           <div className="">
@@ -63,7 +82,7 @@ export default function PhotographyCat() {
           <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[53.5rem] h-[3rem] rounded-lg">
             <div className="flex justify-start items-center gap-4">
               <p className="font-dmsans">Sort</p>
-              <Dropdown />
+              <Dropdown flag={addFlag}/>
             </div>
           </div>
           <Box sx={{ flexGrow: 1 }} >
@@ -92,5 +111,7 @@ export default function PhotographyCat() {
         </div>
       </div>
     </div>
+    </div>
+  
   );
 }

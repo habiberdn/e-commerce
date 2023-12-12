@@ -7,6 +7,7 @@ import CategoryFashion from './prodCat/FashionCategory'
 import Default from "./app";
 import Product from './product/Product'
 import Seller from '../seller/seller'
+import AddProduct from '../seller/addProduct/addProduct'
 
 export default function App() {
   return (
@@ -19,6 +20,8 @@ export default function App() {
           <Route path="/category/Photography" element={<CategoryPhoto />} />
           <Route path="/category/Fashion" element={<CategoryFashion />} />
           <Route path="/seller" element={<Seller />} />
+          <Route path="/seller/addProduct" element={<AddProduct />} />
+          
         </Routes>
       </Router>
   );
