@@ -1,6 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-const sharp = require('sharp');
 
 exports.ratingQuantity = async (req, res, next) => {
   const getData = await prisma.rating.findMany({
@@ -54,3 +53,5 @@ exports.ratings = async (req, res, next) => {
     getData
   })
 }
+
+

@@ -4,17 +4,16 @@ export default function Card(props) {
   return (
     <div className="rounded-lg  ">
       <div className="relative w-[11rem] h-[19.5rem]  flex flex-col flex-start rounded-lg ">
-        <a href={"/" + props.id}>
-          <div className="mb-2 flex justify-center">
+        <a href={"/" + props.id} className="">
+          <div className="mb-2 flex justify-center ">
             <img
               alt="image"
               src={require(`../../image/${props.image}`)}
               sizes="(max-width: 600px) 300px,
               (max-width: 900px) 600px,
               900px"
-              className="rounded-lg w-[10.5rem] h-[9.5rem] "
+              className="rounded-lg w-full h-[9.5rem] "
               loading="lazy"
-            
               aria-label="image"
             />
           </div>
@@ -26,7 +25,7 @@ export default function Card(props) {
           </div>
           <div className=" flex flex-col mt-2 gap-2 ">
             <h2 className="text-left w-full ">
-              <b className="text-[#ff7f17] font-dmsans">${props.price}</b>
+              <b className="font-dmsans">${props.price}</b>
             </h2>
             <div className="flex w-[5rem]   ">
               <svg

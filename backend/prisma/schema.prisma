@@ -7,13 +7,23 @@ model User {
   id                    Int       @id @default(autoincrement())  
   name                  String    @db.Text()  
   email                 String    @unique
-  Category              String    @default("user")
+  role                  Role?     @default(Buyer)
   password              String?   @db.Text()
   created_at            DateTime? @default(now())
   passwordResetToken    String? 
   passwordResetExpires  DateTime?
+  passwordChangeAt      DateTime?
   rating                Rating[]
- 
+}
+
+model Seller {
+  id                    Int       @id @default(autoincrement())
+  name                  String?    @db.Text()  
+  email                 String    @unique
+  role                  Role?     @default(Seller)
+  password              String?   @db.Text()
+  created_at            DateTime? @default(now())
+  product               Product[]
 }
 
 model Product {
@@ -28,6 +38,11 @@ model Product {
   ratingsQuantity     Int?      @default(0)
   ReviewQuantity      Int?      @default(0)
   review              Rating[]  
+  stock               Int?
+  status              Boolean   @default(true)
+  seller              Seller    @relation(fields: [sellerId], references: [id])
+  sellerId            Int
+
 }
 
 model Rating{
@@ -45,6 +60,11 @@ enum Category {
   Electronic
   Fashion
   Photography
+}
+
+enum Role {
+  Seller
+  Buyer 
 }
 
 generator client {

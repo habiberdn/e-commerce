@@ -53,8 +53,8 @@ export default function Navbar() {
             </svg>
           </a>
           {/* <Dropdown/> */}
-          <a href="/login" className="border p-[1.1rem] w-[4rem]  rounded-xl h-[2rem] items-center flex justify-center">Login</a>
-          <a href="/signup" className=" p-[1.1rem] rounded-xl bg-[#2962ff] text-white h-[2rem] items-center flex justify-center">Signup</a>
+          <a href="/login" className="border p-[1.1rem] w-[4rem]  rounded-full h-[2rem] items-center flex justify-center">Login</a>
+          <a href="/signup" className=" p-[1.1rem] rounded-full bg-[#2962ff] text-white h-[2rem] items-center flex justify-center">Signup</a>
 
         </div>
       </div>

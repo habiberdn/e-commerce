@@ -22,7 +22,7 @@ const Content = () => {
                                     class="flex font-dmsans text-sm p-2 text-gray-900 transition duration-75 rounded-lg group hover:text-[#2962ff]"> My Products</a>
                             </li>
                             <li>
-                                <a href="/seller/addProduct"
+                                <a href="/addProduct"
                                     class="flex font-dmsans text-sm p-2 text-gray-900 transition duration-75 rounded-lg group hover:text-[#2962ff]" >Add Product</a>
                             </li> 
                         </ul>}

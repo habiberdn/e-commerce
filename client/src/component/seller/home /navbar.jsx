@@ -21,8 +21,8 @@ const Navbar = () => {
                 />
             </div>
             <div className='pr-[2rem] flex gap-2  items-center'>
-                <img src={`${Default}`} alt="image" width={50} className='rounded-full ' />
-                <p className='font-dmsans'>Hkaolshop</p>
+                <a href="/seller/login" className="border p-[1.1rem] w-[4rem]  rounded-full h-[2rem] items-center flex justify-center">Login</a>
+                <a href="#" className=" p-[1.1rem] rounded-full bg-[#2962ff] text-white h-[2rem] items-center flex justify-center">Signup</a>
             </div>
         </div>
     )
