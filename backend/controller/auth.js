@@ -19,10 +19,11 @@ const createSendToken = (user, statusCode, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
     httpOnly: true, //receive cookie,store it, send it automatically along every request
+    // sameSite: 'None'
   };
 
   if (process.env.NODE_ENV === "Production") cookieOption.secure = true;
-  
+
   //remove password from the output
   user.password = undefined;
   res.cookie("jwt", token, cookieOption);
@@ -39,7 +40,7 @@ const createSendToken = (user, statusCode, res) => {
 exports.signup = catchAsync(async (req, res, next) => {
   try {
     const hashPassword = await bcrypt.hash(req.body.password, 10);
-   
+
     const user = await prisma.user.create({
       data: {
         name: req.body.name,
@@ -47,7 +48,7 @@ exports.signup = catchAsync(async (req, res, next) => {
         password: hashPassword
       },
     });
-    
+
     createSendToken(user, 201, res);
     res.status(201).json({
       status: "success",
@@ -58,39 +59,36 @@ exports.signup = catchAsync(async (req, res, next) => {
     console.error(error);
     res.status(500).json({ error });
   }
- 
+
 });
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(req.headers)
+  // console.log(req.headers)
   //1. Check password and email are exist
   if (!email || !password) {
     return next(new AppError("Please provide email and password", 400));
   }
-
   const user = await prisma.user.findUnique({
     where: {
       email: email,
     },
     select: {
       password: true,
-      id:true
-  }
+      id: true
+    }
   });
 
-  if (!user || !await bcrypt.compare(password,user.password)) {
+  if (!user || !bcrypt.compare(password, user.password)) {
     return next(new AppError("Incorrect email or password", 401));
   }
-
-  // 3. if everything ok, send token to client
   createSendToken(user, 200, res);
 });
 
 exports.signupSeller = catchAsync(async (req, res, next) => {
   try {
     const hashPassword = await bcrypt.hash(req.body.password, 10);
-   
+
     const user = await prisma.seller.create({
       data: {
         name: req.body.name,
@@ -98,7 +96,7 @@ exports.signupSeller = catchAsync(async (req, res, next) => {
         password: hashPassword
       },
     });
-    
+
     createSendToken(user, 201, res);
     res.status(201).json({
       status: "success",
@@ -109,28 +107,29 @@ exports.signupSeller = catchAsync(async (req, res, next) => {
     console.error(error);
     res.status(500).json({ error });
   }
- 
+
 });
 
 exports.loginSeller = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(req.headers)
+  console.log(req.body)
   //1. Check password and email are exist
   if (!email || !password) {
     return next(new AppError("Please provide email and password", 400));
   }
-
+  // const jwtCookieValue = req.cookies.jwt;
+ 
   const user = await prisma.seller.findUnique({
     where: {
       email: email,
     },
     select: {
       password: true,
-      id:true
-  }
+      id: true
+    }
   });
 
-  if (!user || !await bcrypt.compare(password,user.password)) {
+  if (!user || !await bcrypt.compare(password, user.password)) {
     return next(new AppError("Incorrect email or password", 401));
   }
 
@@ -142,42 +141,42 @@ exports.protect = catchAsync(async (req, res, next) => {
   // to protect the id and use the JWT  
   //1. Getting token and check if it there
   let token;
-  if ( req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1];
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }
-  // console.log(req.cookies)
+  // const jwtCookieValue = req.cookies.jwt;
+
   if (!token) {
     return next(
       new AppError("You are not log in, please log in to get access", 401)
     );
   }
-  
-
   //2. Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET); //seeing if the payload token has not been manipulated by some malicious third party
   //3. Check if user still exist
-const currentUser = await prisma.user.findUnique({
-  where:{
-    id: decoded.id //id of user 
-  }
-})
-  
+ 
+  const currentUser = await prisma.seller.findUnique({
+    where: {
+      id: decoded.id //id of user 
+    }
+  })
+  console.log(currentUser)
   if (!currentUser) {
     return next(
       new AppError(
-        "The token belonging to this token does no longer exist",
+        "The token belonging to this user does no longer exist",
         401
       )
     );
   }
   //4. Check if user changed password after token was issues
-      
+
   // get value of passwordChangeAt,implement method changedPasswordAfter
 
   //  return next(new AppError("user recently change password ! Please log in again", 401))
-  
+
   // Grand Access to protect route
   req.user = currentUser; //put stuff on req.user can pass one middleware to another middleware
   res.locals.user = currentUser;

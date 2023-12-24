@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const multer = require('multer');
+let sharp = require('sharp')
 
 const multerStorage = multer.memoryStorage();
 //if u want to resize, save file into memory not into disk
@@ -21,7 +22,7 @@ exports.resizeUserPhoto = async (req, file, next) => {
   if (!req.file) {
     return next()
   }
-  console.log(req.user,req.file)
+  console.log(req.file)
   req.file.filename = `product ${req.user.id}-${Date.now()}.webp` //save file into db
   await sharp(req.file.buffer).resize(500, 500).toFormat('webp').jpeg({ quality: 90 }).toFile(`img/product/${req.file.filename}`) //after uploading file, its better to not save file in the disk instead save in memory
   next()

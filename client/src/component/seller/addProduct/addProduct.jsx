@@ -3,11 +3,15 @@ import Navbar from '../home /navbar';
 import Dropdown from '../../buyer/utils/dropdownCategory'
 import Switch from '@mui/material/Switch';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const AddProduct = () => {
+const cookies = new Cookies();
+console.log(cookies.get('jwt'));
+
     const [digit, setDigit] = useState(0)
     const [isClick, setClick] = useState(false)
     const [value, setValue] = useState({
@@ -20,9 +24,7 @@ const AddProduct = () => {
     })
 
     const handleChange = (e) => {
-       
         const { value, name,files } = e.target
-        console.log( files && files[0] )
         if (name === "image" && files && files[0]) {
             setValue((prev) => ({
               ...prev,
@@ -36,7 +38,6 @@ const AddProduct = () => {
           }
         setDigit(value.length)
     }
-    console.log(value)
     const handleSubmit = async () => {
         try{
             let form = new FormData();
@@ -46,7 +47,7 @@ const AddProduct = () => {
             form.append('image',value.image); 
             form.append('productCategory', value.productCategory);
             form.append('stock', value.stock);   
-
+            
             
             const response = await axios.post('http://127.0.0.1:3001/api/v1/product',
             {
@@ -59,14 +60,12 @@ const AddProduct = () => {
             }
             ,{
                 withCredentials:true,
-               
+                headers: {
+                    Authorization: `Bearer ${cookies.get('jwt')}`,
+                    'Content-Type': 'multipart/form-data'
+                  }
             }) 
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log('File uploaded successfully:', responseData);
-      } else {
-        console.error('Error uploading file');
-      }
+
         }catch(err){
             console.log(err)
         }

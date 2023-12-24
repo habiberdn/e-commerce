@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Cookies from 'universal-cookie';
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const Navigate = useNavigate()
     const cookies = new Cookies();
     const [data, setdata] = useState({
         email: "",
@@ -18,17 +20,29 @@ const Login = () => {
             }
         })
     }
-
     console.log(data)
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await axios.post('http://127.0.0.1:3001/api/v1/seller/login', {
             email: data.email,
             password: data.password
+        },
+        {
+            withCredentials :true,
+            headers: {
+                Authorization: `Bearer ${cookies.get('jwt')}`,
+              }
+        })   
+        console.log(response)
+        
+        cookies.set('jwt', response.data.token,{
+            path : ['/addProduct','/seller'],
+            sameSite: 'None',
         })
-    cookies.set('jwt',response.data.token,{ path: '/seller' })
-    console.log(cookies.get('jwt'));
-    
+       
+        if (response.status === 200) {
+            Navigate('/seller')
+        }
 
     }
     return (
@@ -47,7 +61,7 @@ const Login = () => {
                     </div>
                     <div className=' flex items-center border rounded-xl p-2'>
                         <svg className='w-[1.5rem] ' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.917 13C12.441 15.8377 9.973 18 7 18C3.68629 18 1 15.3137 1 12C1 8.68629 3.68629 6 7 6C9.973 6 12.441 8.16229 12.917 11H23V13H21V17H19V13H17V17H15V13H12.917ZM7 16C9.20914 16 11 14.2091 11 12C11 9.79086 9.20914 8 7 8C4.79086 8 3 9.79086 3 12C3 14.2091 4.79086 16 7 16Z" fill="currentColor"></path></svg>
-                        <input type="password" name="password"  className='border-none outline-none focus:outline-none focus:ring-0 ' placeholder='Password' onChange={handleChange} />
+                        <input type="password" name="password" className='border-none outline-none focus:outline-none focus:ring-0 ' placeholder='Password' onChange={handleChange} />
                     </div>
                     <div className='flex flex-col gap-2'>
 
