@@ -23,7 +23,7 @@ export default function Dropdown(props) {
     useEffect(() => {
         props.setValue( flag && flag.btn)
 
-    }, [flag])
+    }, [flag,props])
 
     return (
         <div className="w-full bg-[#ffff]">

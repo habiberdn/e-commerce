@@ -19,6 +19,7 @@ export default function RatingStats(props) {
       val === 3 && setStars(counter => ({ ...counter, tiga: counter.tiga + 1 }))
       val === 4 && setStars(counter => ({ ...counter, empat: counter.empat + 1 }))
       val === 5 && setStars(counter => ({ ...counter, lima: counter.lima + 1 }))
+      return val
     })
     
   }, [ratingProps])

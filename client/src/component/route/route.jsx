@@ -20,7 +20,6 @@ export default function App() {
         <Route path="/category/Electronic" element={<CategoryElec />} />
         <Route path="/category/Photography" element={<CategoryPhoto />} />
         <Route path="/category/Fashion" element={<CategoryFashion />} />
-        {/* <Route /> */}
         <Route path="/seller" element={<Seller />} />
         <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/seller/login" element={<Loginseller />} />

@@ -6,11 +6,10 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 
-const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 const AddProduct = () => {
-const cookies = new Cookies();
-console.log(cookies.get('jwt'));
+    const label = { inputProps: { 'aria-label': 'Switch demo' } };
+    const cookies = new Cookies();
 
     const [digit, setDigit] = useState(0)
     const [isClick, setClick] = useState(false)
@@ -22,51 +21,53 @@ console.log(cookies.get('jwt'));
         productCategory: "",
         stock: ""
     })
-
+    console.log(cookies.get('jwt'))
     const handleChange = (e) => {
-        const { value, name,files } = e.target
+        const { value, name, files } = e.target
         if (name === "image" && files && files[0]) {
             setValue((prev) => ({
-              ...prev,
-              [name]: files[0],
+                ...prev,
+                [name]: files[0],
             }));
-          } else {
+        } else {
             setValue((prev) => ({
-              ...prev,
-              [name]: value,
+                ...prev,
+                [name]: value,
             }));
-          }
-        setDigit(value.length)
+        }
     }
+
+    useEffect(() => {
+        setDigit(value.length)
+
+    }, [value.name])
+
     const handleSubmit = async () => {
-        try{
+        try {
             let form = new FormData();
             form.append('name', value.name);
             form.append('description', value.description);
             form.append('price', value.price);
-            form.append('image',value.image); 
+            form.append('image', value.image);
             form.append('productCategory', value.productCategory);
-            form.append('stock', value.stock);   
-            
-            
-            const response = await axios.post('http://127.0.0.1:3001/api/v1/product',
-            {
-                name : value.name,
-                description : value.description,
-                price : value.price,
-                image : value.image,
-                productCategory : value.productCategory,
-                stock : value.stock
-            }
-            ,{
-                withCredentials:true,
-                headers: {
-                    Authorization: `Bearer ${cookies.get('jwt')}`,
-                    'Content-Type': 'multipart/form-data'
-                  }
-            }) 
+            form.append('stock', value.stock);
 
-        }catch(err){
+            await axios.post('http://127.0.0.1:3001/api/v1/product',
+                {
+                    name: value.name,
+                    description: value.description,
+                    price: value.price,
+                    image: value.image,
+                    productCategory: value.productCategory,
+                    stock: value.stock
+                }
+                , {
+                    withCredentials: true,
+                    headers: {
+                        Authorization: `Bearer ${cookies.get('jwt')}`,
+                    }
+                })
+        } catch (err) {
             console.log(err)
         }
 
@@ -167,7 +168,7 @@ console.log(cookies.get('jwt'));
                 </div>
                 <div className='flex justify-end p-1  gap-2'>
                     <button className='border border-gray-300 rounded-xl w-[5rem] p-2 font-dmsans'>Cancel</button>
-                    <button className='bg-[#2962ff] text-white rounded-xl w-[5rem] p-2 font-dmsans'  onClick={handleSubmit}>Save</button>
+                    <button className='bg-[#2962ff] text-white rounded-xl w-[5rem] p-2 font-dmsans' onClick={handleSubmit}>Save</button>
                 </div>
             </div>
         </div>

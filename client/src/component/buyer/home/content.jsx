@@ -1,4 +1,4 @@
-import React, { useEffect, useState                                                                                                                                                             } from "react";
+import React, { useEffect, useState } from "react";
 import Slide from "../utils/slide";
 import Card from "./card";
 import Axios from "axios";
@@ -21,7 +21,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Home() {
   const [isData, setData] = useState();
   useEffect(() => {
-    Axios.get("http://127.0.0.1:3001/api/v1/product?${new Date().getTime()").then((response) => {
+    Axios.get("http://127.0.0.1:3001/api/v1/product").then((response) => {
       console.log(response)
       setData(response.data.getData);
     });
@@ -88,7 +88,7 @@ export default function Home() {
                       </div>
                     </Item>
                   </div>
-                </Grid> 
+                </Grid>
               );
             })}
           </Grid>

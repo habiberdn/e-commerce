@@ -7,7 +7,7 @@ export default function Card(props) {
         <a href={"/" + props.id} className="">
           <div className="mb-2 flex justify-center ">
             <img
-              alt="image"
+              alt="img"
               src={require(`../../image/${props.image}`)}
               sizes="(max-width: 600px) 300px,
               (max-width: 900px) 600px,

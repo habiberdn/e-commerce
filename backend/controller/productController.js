@@ -30,19 +30,20 @@ exports.resizeUserPhoto = async (req, file, next) => {
 
 exports.createData = async (req, res, next) => {
   try {
-    // const createData = await prisma.product.create({
-    //   data: {
-    //     name: req.body.name,
-    //     description: req.body.description,
-    //     price: parseInt(req.body.price),
-    //     image: req.file.originalname,
-    //     productCategory: req.body.productCategory,
-    //     stock:parseInt(req.body.stock)
-    //   },
-    // });
+    const createData = await prisma.product.create({
+      data: {
+        name: req.body.name,
+        description: req.body.description,
+        price: parseInt(req.body.price),
+        image: req.file.originalname,
+        productCategory: req.body.productCategory,
+        stock:parseInt(req.body.stock)
+      },
+    });
 
     res.status(201).json({
       status: "Success",
+      createData
 
     });
     await prisma.$disconnect();

@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
     const Navigate = useNavigate()
     const cookies = new Cookies();
+    const dispatch = useDispatch();
     const [data, setdata] = useState({
         email: "",
         password: ""
     })
-
     const handleChange = (e) => {
         const { name, value } = e.target
         setdata(prev => {
@@ -19,6 +20,9 @@ const Login = () => {
                 [name]: value
             }
         })
+        if (name === 'email') {
+            dispatch({ type: 'SET_EMAIL', payload: value });
+        }
     }
     console.log(data)
     const handleSubmit = async (e) => {
@@ -27,28 +31,28 @@ const Login = () => {
             email: data.email,
             password: data.password
         },
-        {
-            withCredentials :true,
-            headers: {
-                Authorization: `Bearer ${cookies.get('jwt')}`,
-              }
-        })   
-        console.log(response)
-        
-        cookies.set('jwt', response.data.token,{
-            path : ['/addProduct','/seller'],
-            sameSite: 'None',
+            {
+                withCredentials: true
+            })
+        console.log(response.data.token)
+
+        cookies.set('jwt', response.data.token, {
+            path: ['/addProduct']
         })
-       
+        cookies.set('jwt', response.data.token, {
+            path: '/seller'
+        })
         if (response.status === 200) {
-            Navigate('/seller')
+            Navigate('/seller', {
+
+            })
         }
 
     }
     return (
         <div className='flex'>
             <div className='h-screen w-[60%]'>
-                <img src={require('../../image/login.webp')} className='h-full w-full' />
+                <img src={require('../../image/login.webp')} className='h-full w-full' alt='login-img' />
             </div>
             <div className='flex flex-col justify-center items-center w-[40%] gap-4'>
                 <h1 className='text-2xl'>
@@ -64,11 +68,10 @@ const Login = () => {
                         <input type="password" name="password" className='border-none outline-none focus:outline-none focus:ring-0 ' placeholder='Password' onChange={handleChange} />
                     </div>
                     <div className='flex flex-col gap-2'>
-
                         <button className="border p-[1.4rem] flex items-center justify-center bg-[#2962ff] text-white  rounded-full h-[2rem] " onClick={handleSubmit}>Login</button>
-                        <h1 className='text-center'>or</h1>
+                        <h1 className='text-center'>OR</h1>
                         <button className="border p-[1.4rem]  flex items-center justify-center rounded-full h-[2rem] " onClick={handleSubmit}><img src={require('../../image/google.png')} className='w-[1.5rem] h-[1.5rem]' alt="" /></button>
-                        <a href="" className='text-sm hover:text-[#2962ff] text-center'>Don't have an account?</a>
+                        <a href="/seller/signup" className='text-sm hover:text-[#2962ff] text-center'>Don't have an account?</a>
                     </div>
                 </div>
             </div>
