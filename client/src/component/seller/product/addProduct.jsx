@@ -110,7 +110,7 @@ const AddProduct = () => {
                         <div className='w-[30%]'>
                             <span className='font-dmsans'>Category</span>
                         </div>
-                        <div className='w-[70%] z-20  h-[4rem] '>
+                        <div className='w-[70%] z-20  h-[4rem]'>
                             <Dropdown setValue={addFlag} />
                         </div>
                     </div>

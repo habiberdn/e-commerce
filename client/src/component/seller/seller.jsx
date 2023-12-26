@@ -9,10 +9,9 @@ export default function Seller(){
     const cookies = new Cookies();
     const Navigate = useNavigate()
     useEffect(()=>{
-        cookies.get('jwt') === undefined && Navigate('/seller/login')
+        cookies.get('jwtseller') === undefined && Navigate('/seller/login')
 
     },[Navigate,cookies])
-    console.log(cookies.get('jwt'))
     return (
         <div>
             <Navbar/>

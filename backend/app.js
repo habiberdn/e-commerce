@@ -5,10 +5,15 @@ const userRouter = require('./router/userRouter')
 const productRouter = require('./router/productRouter')
 const ratingRouter = require('./router/ratingRoute')
 const sellerRouter = require('./router/sellerRouter')
-
+const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
 const app = express()
+app.use(session({
+  secret: process.env.JWT_SECRET, // Replace with a secret key for session encryption
+  resave: false,
+  saveUninitialized: false,
+}));
 app.use(cors(
   {
     origin: ['http://localhost:3000','http://localhost:3000/seller/login'],

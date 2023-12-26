@@ -1,6 +1,5 @@
 const initialState = {
     email: '',
-    
   };
   
   const userReducer = (state = initialState, action) => {
@@ -10,6 +9,11 @@ const initialState = {
           ...state,
           email: action.payload,
         };
+        case 'logout':
+          return {
+            ...state,
+            email :""
+          }
       default:
         return state;
     }

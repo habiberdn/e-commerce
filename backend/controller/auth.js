@@ -118,7 +118,7 @@ exports.loginSeller = catchAsync(async (req, res, next) => {
     return next(new AppError("Please provide email and password", 400));
   }
   // const jwtCookieValue = req.cookies.jwt;
- 
+
   const user = await prisma.seller.findUnique({
     where: {
       email: email,
@@ -156,7 +156,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   //2. Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET); //seeing if the payload token has not been manipulated by some malicious third party
   //3. Check if user still exist
- 
+
   const currentUser = await prisma.seller.findUnique({
     where: {
       id: decoded.id //id of user 
@@ -184,14 +184,4 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 
-exports.logout = (req, res) => {
-  res.cookie('jwt', 'loggedout', {
-    expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true,
-  });
-
-  res.status(200).json({
-    status: 'success',
-  });
-};
 

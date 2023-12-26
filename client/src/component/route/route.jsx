@@ -7,8 +7,9 @@ import CategoryFashion from '../buyer/prodCat/FashionCategory'
 import Default from "../buyer/app";
 import Product from '../buyer/product/Product'
 import Seller from '../seller/seller'
-import AddProduct from '../seller/addProduct/addProduct'
+import AddProduct from '../seller/product/addProduct'
 import Loginseller from '../seller/auth/login'
+import Myproduct from '../seller/product/myProduct'
 
 export default function App() {
   return (
@@ -23,6 +24,8 @@ export default function App() {
         <Route path="/seller" element={<Seller />} />
         <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/seller/login" element={<Loginseller />} />
+        <Route path="/product" element={<Myproduct />} />
+
 
       </Routes>
     </Router>
