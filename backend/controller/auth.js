@@ -19,7 +19,6 @@ const createSendToken = (user, statusCode, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
     httpOnly: true, //receive cookie,store it, send it automatically along every request
-    // sameSite: 'None'
   };
 
   if (process.env.NODE_ENV === "Production") cookieOption.secure = true;
@@ -64,7 +63,6 @@ exports.signup = catchAsync(async (req, res, next) => {
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  // console.log(req.headers)
   //1. Check password and email are exist
   if (!email || !password) {
     return next(new AppError("Please provide email and password", 400));
@@ -123,10 +121,6 @@ exports.loginSeller = catchAsync(async (req, res, next) => {
     where: {
       email: email,
     },
-    select: {
-      password: true,
-      id: true
-    }
   });
 
   if (!user || !await bcrypt.compare(password, user.password)) {
@@ -162,7 +156,6 @@ exports.protect = catchAsync(async (req, res, next) => {
       id: decoded.id //id of user 
     }
   })
-  console.log(currentUser)
   if (!currentUser) {
     return next(
       new AppError(

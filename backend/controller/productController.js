@@ -2,6 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const multer = require('multer');
 let sharp = require('sharp')
+const catchAsync = require('../utils/catchAsync')
 
 const multerStorage = multer.memoryStorage();
 //if u want to resize, save file into memory not into disk
@@ -25,19 +26,22 @@ exports.resizeUserPhoto = async (req, file, next) => {
   console.log(req.file)
   req.file.filename = `product ${req.user.id}-${Date.now()}.webp` //save file into db
   await sharp(req.file.buffer).resize(500, 500).toFormat('webp').jpeg({ quality: 90 }).toFile(`img/product/${req.file.filename}`) //after uploading file, its better to not save file in the disk instead save in memory
+  req.user = req.file.filename
   next()
 }
 
-exports.createData = async (req, res, next) => {
+exports.createData = catchAsync(async (req, res, next) => {
   try {
+    console.log(req.body)
     const createData = await prisma.product.create({
       data: {
         name: req.body.name,
         description: req.body.description,
         price: parseInt(req.body.price),
-        image: req.file.originalname,
+        image: req.file.originalname ,
         productCategory: req.body.productCategory,
-        stock:parseInt(req.body.stock)
+        stock: parseInt(req.body.stock),
+        sellerName: req.body.sellerName
       },
     });
 
@@ -51,11 +55,11 @@ exports.createData = async (req, res, next) => {
   } catch (err) {
     console.error(err);
   }
-};
+});
 
-exports.getAllData = async (req, res, next) => {
+exports.getAllData = catchAsync(async (req, res, next) => {
   const params = req.params.sort;
-  console.log(params)
+  // console.log(params)
   console.log(req.params.id)
 
   if (params === 'Newest' && isNaN(req.params.id)) {
@@ -108,7 +112,7 @@ exports.getAllData = async (req, res, next) => {
 
   }
 
-};
+});
 
 exports.getOne = async (req, res, next) => {
   const paramsID = req.params.id; //
@@ -149,7 +153,7 @@ exports.getOne = async (req, res, next) => {
   }
 };
 
-exports.deleteData = async (req, res, next) => {
+exports.deleteData = catchAsync(async (req, res, next) => {
   await prisma.product.delete({
     where: {
       id: parseInt(req.params.id),
@@ -161,7 +165,7 @@ exports.deleteData = async (req, res, next) => {
   });
   await prisma.$disconnect();
 
-};
+});
 
 exports.deleteAllData = async (req, res, next) => {
   await prisma.product.deleteMany({});
@@ -173,7 +177,7 @@ exports.deleteAllData = async (req, res, next) => {
 
 };
 
-exports.updateData = async (req, res, next) => {
+exports.updateData = catchAsync(async (req, res, next) => {
   console.log(req.params.id);
 
   await prisma.product.update({
@@ -193,4 +197,4 @@ exports.updateData = async (req, res, next) => {
   });
   await prisma.$disconnect();
 
-};
+});

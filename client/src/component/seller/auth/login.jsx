@@ -21,18 +21,16 @@ const Login = () => {
             }
         })
     }
-     data.email && dispatch({ type: 'SET_EMAIL', payload: data.email });
-     
+    data.email && dispatch({ type: 'SET_EMAIL', payload: data.email });
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await axios.post('http://127.0.0.1:3001/api/v1/seller/login', {
-            email: data.email,  
+            email: data.email,
             password: data.password
         },
             {
                 withCredentials: true
             })
-        console.log(response.data)
 
         cookies.set('jwtseller', response.data.token, {
             path: ['/addProduct']
@@ -40,9 +38,10 @@ const Login = () => {
         cookies.set('jwtseller', response.data.token, {
             path: '/seller'
         })
-        if ( response.status === 'Success' || response.status === 200) {
+        if (response.status === 'Success' || response.status === 200) {
             Navigate('/seller')
         }
+        dispatch({ type: 'set_username', payload: response.data.data.user.name });
 
     }
     return (

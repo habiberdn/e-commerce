@@ -4,7 +4,7 @@ const Content = () => {
   
     const [isOpen, setOpen] = useState(false)
     const handleDropdown = () => {
-        setOpen(true)
+        setOpen(!isOpen)
     }
   
     return (

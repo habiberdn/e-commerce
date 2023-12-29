@@ -23,11 +23,11 @@ export default function Dropdown(props) {
     useEffect(() => {
         props.setValue( flag && flag.btn)
 
-    }, [flag,props])
+    }, [flag])
 
     return (
         <div className="w-full bg-[#ffff]">
-            <button onClick={handleClick} className='border w-full p-2 flex rounded-lg border-[#8E8E8E] text-[#8E8E8E] justify-between'>{flag ? flag.btn : "Category"}<svg sidebar-toggle-item className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+            <button onClick={handleClick}  className='border w-full p-2 flex rounded-lg border-[#8E8E8E] text-[#8E8E8E] justify-between'>{flag ? flag.btn : "Category"}<svg sidebar-toggle-item className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
             </button>
             {isOpen &&
                 <div className='border p-2 z-10 rounded-b-xl'>

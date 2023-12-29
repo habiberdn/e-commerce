@@ -18,7 +18,7 @@ model User {
 
 model Seller {
   id                    Int       @id @default(autoincrement())
-  name                  String?    @db.Text()  
+  name                  String   @db.Text()  @unique
   email                 String    @unique
   role                  Role?     @default(Seller)
   password              String?   @db.Text()
@@ -31,18 +31,17 @@ model Product {
   name                String
   description         String?
   price               Float
-  image               String?
+  image               String
   created_at          DateTime  @default(now())
-  productCategory     Category? 
+  productCategory     Category
   ratingsAverage      Float?   
   ratingsQuantity     Int?      @default(0)
   ReviewQuantity      Int?      @default(0)
   review              Rating[]  
   stock               Int?
   status              Boolean   @default(true)
-  seller              Seller    @relation(fields: [sellerId], references: [id])
-  sellerId            Int
-
+  seller              Seller    @relation(fields: [sellerName], references: [name])
+  sellerName         String
 }
 
 model Rating{

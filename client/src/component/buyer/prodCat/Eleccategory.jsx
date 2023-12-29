@@ -94,7 +94,6 @@ export default function ElectronicCat() {
                           <Card
                             id={isData[key].id}
                             name={isData[key].name}
-                            description={isData[key].description}
                             price={isData[key].price}
                             image={isData[key].image}
                             ratingsAverage={isData[key].ratingsAverage}

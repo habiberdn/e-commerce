@@ -3,7 +3,7 @@ import React from "react";
 export default function Card(props) {
   return (
     <div className="rounded-lg  ">
-      <div className="relative w-[11rem] h-[19.5rem]  flex flex-col flex-start rounded-lg ">
+      <div className="relative w-[11rem]   flex flex-col flex-start rounded-lg ">
         <a href={"/" + props.id} className="">
           <div className="mb-2 flex justify-center ">
             <img
@@ -12,21 +12,20 @@ export default function Card(props) {
               sizes="(max-width: 600px) 300px,
               (max-width: 900px) 600px,
               900px"
-              className="rounded-lg w-full h-[9.5rem] "
+              className="rounded-lg w-full  "
               loading="lazy"
               aria-label="image"
             />
           </div>
           <div className="grid gap-y-3">
-            <h1 className="font-dmsans flex flex-start"><b>{props.name}</b></h1>
-            <h2 className="flex text-left w-full h-[59px] font-dmsans text-ellipsis overflow-hidden  ">
-              {props.description}
-            </h2>
+            <h1 className="font-dmsans flex flex-start">{props.name}</h1>
+
           </div>
           <div className=" flex flex-col mt-2 gap-2 ">
             <h2 className="text-left w-full ">
               <b className="font-dmsans">${props.price}</b>
             </h2>
+            <p>{props.seller}</p>
             <div className="flex w-[5rem]   ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

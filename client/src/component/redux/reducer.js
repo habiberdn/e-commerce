@@ -14,6 +14,11 @@ const initialState = {
             ...state,
             email :""
           }
+        case 'set_username':
+          return {
+            ...state,
+            username:action.payload
+          }
       default:
         return state;
     }

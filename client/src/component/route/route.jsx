@@ -24,7 +24,7 @@ export default function App() {
         <Route path="/seller" element={<Seller />} />
         <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/seller/login" element={<Loginseller />} />
-        <Route path="/product" element={<Myproduct />} />
+        {/* <Route path="/myProduct" element={<Myproduct />} /> */}
 
 
       </Routes>
