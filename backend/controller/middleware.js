@@ -38,6 +38,7 @@ exports.ratingQuantity = async (req, res, next) => {
 };
 
 exports.ratings = async (req, res, next) => {
+  console.log(req.params.product)
   const getData = await prisma.rating.findMany({
     where: {
       product: parseInt(req.params.product)

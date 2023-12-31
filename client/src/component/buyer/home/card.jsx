@@ -8,24 +8,25 @@ export default function Card(props) {
           <div className="mb-2 flex justify-center ">
             <img
               alt="img"
-              src={require(`../../image/${props.image}`)}
-              sizes="(max-width: 600px) 300px,
-              (max-width: 900px) 600px,
-              900px"
-              className="rounded-lg w-full  "
+              src={require(`../../../../../backend/img/product/${props.image}`)}
+              
+              className="rounded-lg w-full border"
               loading="lazy"
               aria-label="image"
             />
           </div>
-          <div className="grid gap-y-3">
-            <h1 className="font-dmsans flex flex-start">{props.name}</h1>
+          <div className="grid ">
+            <h1 className="font-dmsans flex font-semibold flex-start">{props.name}</h1>
 
           </div>
-          <div className=" flex flex-col mt-2 gap-2 ">
-            <h2 className="text-left w-full ">
-              <b className="font-dmsans">${props.price}</b>
-            </h2>
-            <p>{props.seller}</p>
+          <div className=" flex flex-col   ">
+            <div className="flex flex-col gap-2">
+              <h2 className="text-left w-full font-bold text-[19px] text-[#2962FF] ">
+                ${props.price}
+              </h2>
+              <p className="text-left ">{props.sellerName}</p>
+            </div>
+
             <div className="flex w-[5rem]   ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

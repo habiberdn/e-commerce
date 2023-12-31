@@ -18,7 +18,7 @@ export default function Product() {
   });
 
   useEffect(() => {
-    axios
+    Product && axios
       .get(`http://127.0.0.1:3001/api/v1/rating/${params.product}`)
       .then((response) => {
         setRating(response.data.getData);
@@ -29,12 +29,14 @@ export default function Product() {
   }, [params.product]);
 
   useEffect(() => {
+    // loop ratings value 
     const allRatings = Object.values(rating).map((rating) => rating.rating);
     return setValRating(allRatings)
 
   }, [rating])
 
   useEffect(() => {
+    //get user data 
     axios
       .get(`http://127.0.0.1:3001/api/v1/users`)
       .then((response) => {
@@ -43,11 +45,12 @@ export default function Product() {
   }, [])
 
   useEffect(() => {
+    //get review 
     if (user) {
       const name = Object.values(user).map((val) => val.name);
       setContent((prevContent) => ({ ...prevContent, name: name }));
     }
-
+    //get rating value
     if (rating) {
       const review = Object.values(rating).map((val) => val.review);
       setContent((prevContent) => ({ ...prevContent, review: review }));
@@ -55,6 +58,7 @@ export default function Product() {
   }, [user, rating])
 
   useEffect(() => {
+    //get product 
     axios
       .get(`http://127.0.0.1:3001/api/v1/product/${params.product}`)
       .then((response) => {
@@ -82,7 +86,7 @@ export default function Product() {
           <div className="flex gap-5 ">
             <div className="">
               <img
-                src={Product && require(`../../image/${Product.image}`)}
+                src={Product && require(`../../../../../backend/img/product/${Product.image}`)}
                 className="w-[23rem] border h-[23rem]"
                 alt="Product"
 

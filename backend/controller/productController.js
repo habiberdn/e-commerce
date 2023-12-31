@@ -23,7 +23,7 @@ exports.resizeUserPhoto = async (req, file, next) => {
   if (!req.file) {
     return next()
   }
-  console.log(req.file)
+  console.log(req.file) 
   req.file.filename = `product ${req.user.id}-${Date.now()}.webp` //save file into db
   await sharp(req.file.buffer).resize(500, 500).toFormat('webp').jpeg({ quality: 90 }).toFile(`img/product/${req.file.filename}`) //after uploading file, its better to not save file in the disk instead save in memory
   req.user = req.file.filename
@@ -32,13 +32,12 @@ exports.resizeUserPhoto = async (req, file, next) => {
 
 exports.createData = catchAsync(async (req, res, next) => {
   try {
-    console.log(req.body)
     const createData = await prisma.product.create({
       data: {
         name: req.body.name,
         description: req.body.description,
         price: parseInt(req.body.price),
-        image: req.file.originalname ,
+        image: req.file.filename ,
         productCategory: req.body.productCategory,
         stock: parseInt(req.body.stock),
         sellerName: req.body.sellerName

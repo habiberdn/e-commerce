@@ -26,7 +26,7 @@ export default function Navbar() {
           <a href="/" aria-label="home">
             <b>
               <i>
-                <h4 className="font-bold text-xl" aria-label="name">E-Commerce</h4>
+                <h4 className="font-bold text-xl " aria-label="name">E-Commerce</h4>
               </i>
             </b>
           </a>

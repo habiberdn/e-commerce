@@ -9,7 +9,7 @@ import {
     Alert,
     AlertIcon,
 } from '@chakra-ui/react'
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddProduct = () => {
@@ -26,6 +26,7 @@ const AddProduct = () => {
         productCategory: "",
         stock: ""
     })
+    const Navigate = useNavigate()
     const handleChange = (e) => {
         const { value, name, files } = e.target
         if (name === "image" && files && files[0]) {
@@ -53,7 +54,7 @@ const AddProduct = () => {
             form.append('image', value.image);
             form.append('productCategory', value.productCategory);
             form.append('stock', value.stock);
-            form.append('sellerName', localStorage.getItem('email'))
+            form.append('sellerName', localStorage.getItem('username'))
             const response = await axios.post('http://127.0.0.1:3001/api/v1/product',
                 form
                 , {
@@ -62,18 +63,25 @@ const AddProduct = () => {
                         Authorization: `Bearer ${cookies.get('jwtseller')}`,
                     }
                 })
-            response.status === 201 ? 
+            response.status === 201 ?
                 setSuccess(true) : setSuccess(false)
-            setTimeout(()=>{
-                Navigate('/addProduct')
-            },1500)
+
+            response.status === 201 && setTimeout(()=>{
+                Navigate('addProduct')
+            },1200)
+            
             console.log(response)
         } catch (err) {
             console.log(err)
         }
 
     }
-
+    useEffect(()=>{
+        isSuccess && setTimeout(    
+            Navigate('/addProduct')
+            , 1000)
+    },[isSuccess])
+    
     function addFlag(productCategory) {
         setValue((prev) => {
             return { ...prev, productCategory }

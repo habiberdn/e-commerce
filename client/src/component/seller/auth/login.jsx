@@ -10,7 +10,8 @@ const Login = () => {
     const dispatch = useDispatch();
     const [data, setdata] = useState({
         email: "",
-        password: ""
+        password: "",
+        error: ""
     })
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -21,29 +22,41 @@ const Login = () => {
             }
         })
     }
+    console.log(data)
     data.email && dispatch({ type: 'SET_EMAIL', payload: data.email });
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await axios.post('http://127.0.0.1:3001/api/v1/seller/login', {
-            email: data.email,
-            password: data.password
-        },
-            {
+        try {
+            const response = await axios.post('http://127.0.0.1:3001/api/v1/seller/login', {
+                email: data.email,
+                password: data.password
+            }, {
                 withCredentials: true
             })
+            console.log(response)
 
-        cookies.set('jwtseller', response.data.token, {
-            path: ['/addProduct']
-        })
-        cookies.set('jwtseller', response.data.token, {
-            path: '/seller'
-        })
-        if (response.status === 'Success' || response.status === 200) {
-            Navigate('/seller')
+            if (response.status === 200) {
+                cookies.set('jwtseller', response.data.token, {
+                    path:  '/seller'
+                });
+                cookies.set('jwtseller', response.data.token, {
+                    path: '/addProduct'
+                });
+                dispatch({ type: 'set_username', payload: response.data.data.user.name });
+                Navigate('/seller');
+            } else {
+               
+                setdata({
+                    error: 'Invalid Email or Password'
+                });
+            }
+        } catch (error) {
+            console.log(error)
+            setdata({
+                error: error.response.data.message
+            });
         }
-        dispatch({ type: 'set_username', payload: response.data.data.user.name });
-
-    }
+    };
     return (
         <div className='flex'>
             <div className='h-screen w-[60%]'>
@@ -63,6 +76,7 @@ const Login = () => {
                         <input type="password" name="password" className='border-none outline-none focus:outline-none focus:ring-0 ' placeholder='Password' onChange={handleChange} />
                     </div>
                     <div className='flex flex-col gap-2'>
+                        {data.error && <h1 className='text-[#ff0000] text-sm'>{data.error}</h1>}
                         <button className="border p-[1.4rem] flex items-center justify-center bg-[#2962ff] text-white  rounded-full h-[2rem] " onClick={handleSubmit}>Login</button>
                         <h1 className='text-center'>OR</h1>
                         <button className="border p-[1.4rem]  flex items-center justify-center rounded-full h-[2rem] " onClick={handleSubmit}><img src={require('../../image/google.png')} className='w-[1.5rem] h-[1.5rem]' alt="" /></button>

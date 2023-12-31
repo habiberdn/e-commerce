@@ -83,6 +83,7 @@ export default function Home() {
                           name={value.name}
                           price={value.price}
                           image={value.image}
+                          sellerName={value.sellerName}
                           ratingsAverage={value.ratingsAverage}
                         />
                       </div>

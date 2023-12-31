@@ -6,9 +6,12 @@ const productRouter = require('./router/productRouter')
 const ratingRouter = require('./router/ratingRoute')
 const sellerRouter = require('./router/sellerRouter')
 const session = require('express-session');
+const errorGlobal = require('./controller/errorController')
 const cookieParser = require('cookie-parser');
 
 const app = express()
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+app.use(express.json({ limit: '10kb' }));
 app.use(session({
   secret: process.env.JWT_SECRET, // Replace with a secret key for session encryption
   resave: false,
@@ -32,8 +35,7 @@ app.use(function(req, res, next) {
 })
 app.use(cookieParser());
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ limit: '10kb' }));
+
 app.set('views', path.join(__dirname, 'src'));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -44,5 +46,6 @@ app.use('/api/v1/rating', ratingRouter)
 app.use('/api/v1/product', productRouter)
 app.use('/api/v1/seller', sellerRouter)
 
+app.use(errorGlobal)
 
 module.exports = app
