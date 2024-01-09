@@ -13,6 +13,7 @@ router
   .delete(productController.deleteAllData)
   
 router.route('/:id').patch(productController.updateData).get(productController.getOne).delete(productController.deleteData);
+
 router.route('/:id/:sort').get(productController.getAllData).patch(productController.updateData).get(productController.getOne).delete(productController.deleteData);
 
 

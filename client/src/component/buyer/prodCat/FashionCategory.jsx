@@ -22,7 +22,7 @@ export default function FashionCat() {
   const [flag, setFlag] = useState("")
 
   function addFlag(newFlag) {
-    setFlag((prev) => {
+    setFlag(() => {
       return [newFlag]
     })
   }
@@ -38,6 +38,7 @@ export default function FashionCat() {
     }else{
       axios.get(`http://127.0.0.1:3001/api/v1/product/Fashion`).then(
         (response) => {
+          console.log(response)
           setData(response.data.getData);
         },
       );

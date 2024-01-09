@@ -10,6 +10,7 @@ import Seller from '../seller/seller'
 import AddProduct from '../seller/product/addProduct'
 import Loginseller from '../seller/auth/login'
 import Allproduct from '../seller/product/myProduct'
+import EditProduct from '../seller/product/editProduct'
 
 export default function App() {
   return (
@@ -25,6 +26,8 @@ export default function App() {
         <Route path="/addProduct" element={<AddProduct />} />
         <Route path="/seller/login" element={<Loginseller />} />
         <Route path="/myproduct" element={<Allproduct />} />
+        <Route path="/edit/:id" element={<EditProduct />} />
+
 
 
       </Routes>

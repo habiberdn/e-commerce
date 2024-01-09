@@ -16,7 +16,7 @@ export default function Product() {
     name: "",
     review: ""
   });
-
+  console.log(Product)
   useEffect(() => {
     Product && axios
       .get(`http://127.0.0.1:3001/api/v1/rating/${params.product}`)

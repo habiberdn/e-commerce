@@ -10,7 +10,7 @@ export default function Card(props) {
               alt="img"
               src={require(`../../../../../backend/img/product/${props.image}`)}
               
-              className="rounded-lg w-full border"
+              className="rounded-lg w-full "
               loading="lazy"
               aria-label="image"
             />

@@ -23,7 +23,7 @@ exports.resizeUserPhoto = async (req, file, next) => {
   if (!req.file) {
     return next()
   }
-  console.log(req.file) 
+  console.log(req.file)
   req.file.filename = `product ${req.user.id}-${Date.now()}.webp` //save file into db
   await sharp(req.file.buffer).resize(500, 500).toFormat('webp').jpeg({ quality: 90 }).toFile(`img/product/${req.file.filename}`) //after uploading file, its better to not save file in the disk instead save in memory
   req.user = req.file.filename
@@ -37,7 +37,7 @@ exports.createData = catchAsync(async (req, res, next) => {
         name: req.body.name,
         description: req.body.description,
         price: parseInt(req.body.price),
-        image: req.file.filename ,
+        image: req.file.filename,
         productCategory: req.body.productCategory,
         stock: parseInt(req.body.stock),
         sellerName: req.body.sellerName
@@ -58,8 +58,6 @@ exports.createData = catchAsync(async (req, res, next) => {
 
 exports.getAllData = catchAsync(async (req, res, next) => {
   const params = req.params.sort;
-  // console.log(params)
-  console.log(req.params.id)
 
   if (params === 'Newest' && isNaN(req.params.id)) {
     const getData = await prisma.product.findMany({
@@ -81,7 +79,6 @@ exports.getAllData = catchAsync(async (req, res, next) => {
 
   }
   else if (params === 'Latest' && isNaN(req.params.id)) {
-    console.log(req.params.id)
     const getData = await prisma.product.findMany({
       orderBy: [
         {
@@ -113,9 +110,10 @@ exports.getAllData = catchAsync(async (req, res, next) => {
 
 });
 
+
 exports.getOne = async (req, res, next) => {
-  const paramsID = req.params.id; //
-  if (!isNaN(paramsID)) {
+  const paramsID = req.params.id;
+  if (!isNaN(paramsID)) { // a number
     const getData = await prisma.product.findUnique({
       where: {
         id: parseInt(paramsID),
@@ -131,7 +129,9 @@ exports.getOne = async (req, res, next) => {
     });
     await prisma.$disconnect();
 
-  } else {
+  }
+
+  else if (paramsID === 'Fashion' || paramsID === 'Photography' || paramsID === 'Electronic') {
     const getData = await prisma.product.findMany({
       where: {
         productCategory: paramsID,
@@ -147,8 +147,21 @@ exports.getOne = async (req, res, next) => {
       status: "Success",
       getData,
     });
+
     await prisma.$disconnect();
 
+  }
+  else {
+    const sellerProduct = await prisma.product.findMany({
+      where: {
+        sellerName: paramsID
+      }
+    })
+    res.status(200).json({
+      status: "success",
+      sellerProduct,
+    });
+    await prisma.$disconnect();
   }
 };
 
@@ -177,7 +190,6 @@ exports.deleteAllData = async (req, res, next) => {
 };
 
 exports.updateData = catchAsync(async (req, res, next) => {
-  console.log(req.params.id);
 
   await prisma.product.update({
     where: {
@@ -189,6 +201,7 @@ exports.updateData = catchAsync(async (req, res, next) => {
       description: req.body.description,
       price: req.body.price,
       image: req.body.image,
+      stock:req.body.stock,
     },
   });
   res.status(200).json({
