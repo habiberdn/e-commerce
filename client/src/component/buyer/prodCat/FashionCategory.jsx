@@ -28,14 +28,14 @@ export default function FashionCat() {
   }
   useEffect(() => {
     console.log(flag[0])
-    if(flag[0]){
+    if (flag[0]) {
       axios.get(`http://127.0.0.1:3001/api/v1/product/Fashion/${flag[0]}`).then(
         (response) => {
           setData(response.data.getData);
         },
       );
 
-    }else{
+    } else {
       axios.get(`http://127.0.0.1:3001/api/v1/product/Fashion`).then(
         (response) => {
           console.log(response)
@@ -78,36 +78,36 @@ export default function FashionCat() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col mr-[1rem]">
+          <div className="flex flex-col mr-[1rem] gap-5">
             <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[58rem] h-[3rem] rounded-lg">
               <div className="flex justify-start items-center gap-4">
                 <p className="font-dmsans">Sort</p>
-                <Dropdown flag={addFlag}/>
+                <Dropdown flag={addFlag} />
               </div>
             </div>
-            <Box sx={{ flexGrow: 1 }}>
-              <Grid container spacing={1}>
-                {Object.keys(isData).map((key) => {
-                  return (
-                    <Grid item xs={3} className="">
-                      <div className="flex justify-center  items-center h-full ">
-                        <Item className="flex justify-center items-center  mr-[2.5rem] h-full mt-4 rounded-xl ">
-                          <Card
-                            id={isData[key].id}
-                            name={isData[key].name}
-                            description={isData[key].description}
-                            price={isData[key].price}
-                            image={isData[key].image}
-                            ratingsAverage={isData[key].ratingsAverage}
-                            ratingsQuantity={isData[key].ratingsQuantity}
-                          />
-                        </Item>
-                      </div>
-                    </Grid>
-                  );
-                })}
-              </Grid>
-            </Box>
+            <div className={` ${isData.length === 0 ? "h-[24rem] flex justify-center items-center" : ""}`}>
+              <p className="flex text-center text-sm text-[#8E8E8E]">This Category Doesn't Have Any Product Yet!</p>
+              {Object.keys(isData).map((key) => {
+                return (
+                  <Grid item xs={3} className="">
+                    <div className="flex justify-center  items-center h-full ">
+                      <Item className="flex justify-center items-center  mr-[2.5rem] h-full mt-4 rounded-xl ">
+                        <Card
+                          id={isData[key].id}
+                          name={isData[key].name}
+                          description={isData[key].description}
+                          price={isData[key].price}
+                          image={isData[key].image}
+                          ratingsAverage={isData[key].ratingsAverage}
+                          ratingsQuantity={isData[key].ratingsQuantity}
+                        />
+                      </Item>
+                    </div>
+                  </Grid>
+                );
+              })}
+            </div>
+
           </div>
         </div>
       </div>

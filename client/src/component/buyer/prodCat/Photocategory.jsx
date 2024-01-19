@@ -79,36 +79,35 @@ export default function PhotographyCat() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col mr-[1rem]">
+          <div className="flex flex-col mr-[1rem] gap-5">
             <div className="flex bg-[#DFDFDF] justify-between pl-[10px] items-center  w-[53.5rem] h-[3rem] rounded-lg">
               <div className="flex justify-start items-center gap-4">
                 <p className="font-dmsans">Sort</p>
                 <Dropdown flag={addFlag} />
               </div>
             </div>
-            <Box sx={{ flexGrow: 1 }} >
-              <Grid container spacing={2} >
-                {Object.keys(isData).map((key) => {
-                  return (
-                    <Grid item xs={3} className="">
-                      <div className="flex justify-center  items-center h-full ">
-                        <Item className="flex justify-center items-center  mr-[2.5rem] h-full mt-4 rounded-xl ml-[2.2rem]">
-                          <Card
-                            id={isData[key].id}
-                            name={isData[key].name}
-                            description={isData[key].description}
-                            price={isData[key].price}
-                            image={isData[key].image}
-                            ratingsAverage={isData[key].ratingsAverage}
-                            ratingsQuantity={isData[key].ratingsQuantity}
-                          />
-                        </Item>
-                      </div>
-                    </Grid>
-                  );
-                })}
-              </Grid>
-            </Box>
+            <div className={`${isData.length === 0 ? "h-[24rem] flex justify-center items-center" : ""}`}>
+              <p className="flex text-center text-sm text-[#8E8E8E]">This Category Doesn't Have Any Product Yet!</p>
+              {Object.keys(isData).map((key) => {
+                return (
+                  <Grid item xs={3} className="">
+                    <div className="flex justify-center  items-center h-full ">
+                      <Item className="flex justify-center items-center  mr-[2.5rem] h-full mt-4 rounded-xl ml-[2.2rem]">
+                        <Card
+                          id={isData[key].id}
+                          name={isData[key].name}
+                          description={isData[key].description}
+                          price={isData[key].price}
+                          image={isData[key].image}
+                          ratingsAverage={isData[key].ratingsAverage}
+                          ratingsQuantity={isData[key].ratingsQuantity}
+                        />
+                      </Item>
+                    </div>
+                  </Grid>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

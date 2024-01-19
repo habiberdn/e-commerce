@@ -21,16 +21,16 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Home() {
   const [isData, setData] = useState();
   useEffect(() => {
-     Axios.get("http://127.0.0.1:3001/api/v1/product").then((response) => {
+    Axios.get("http://127.0.0.1:3001/api/v1/product").then((response) => {
       console.log(response)
       setData(response.data.getData);
     });
-    
+
   }, []);
   console.log(isData)
 
   return (
-    <div className="flex flex-col  bg-[#f1f2f2] mt-[5em] pb-[2rem]  gap-3 ">
+    <div className="flex flex-col  bg-[#f1f2f2] mt-[6rem] pb-[2rem]  gap-3 ">
       <Slide />
 
       <div className="flex justify-start ml-[0.5rem] h-full">
@@ -70,30 +70,28 @@ export default function Home() {
             For You
           </p>
         </div>
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={1}>
-            {isData?.map((value) => {
-              return (
-                <Grid item xs={2}>
-                  <div className="flex justify-center ml-[5px] items-center h-full w-full">
-                    <Item className=" mt-4  rounded-xl ">
-                      <div className="flex justify-center items-center h-full w-full">
-                        <Card
-                          id={value.id}
-                          name={value.name}
-                          price={value.price}
-                          image={value.image}
-                          sellerName={value.sellerName}
-                          ratingsAverage={value.ratingsAverage}
-                        />
-                      </div>
-                    </Item>
+        <div className="grid grid gap-4 grid-cols-7 ml-[1.1rem]">
+          {isData?.map((value) => {
+            return (
+              <div className="flex justify-center ml-[5px] items-center h-full w-full">
+                <Item className=" mt-4  rounded-xl ">
+                  <div className="flex justify-center items-center h-full w-full">
+                    <Card
+                      id={value.id}
+                      name={value.name}
+                      price={value.price}
+                      image={value.image}
+                      sellerName={value.sellerName}
+                      ratingsAverage={value.ratingsAverage}
+                    />
                   </div>
-                </Grid>
-              );
-            })}
-          </Grid>
-        </Box>
+                </Item>
+              </div>
+            );
+          })}
+
+        </div>
+
       </div>
     </div>
   );

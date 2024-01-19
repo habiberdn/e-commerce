@@ -9,12 +9,12 @@ export default function Navbar() {
     setSlide(!slide);
   };
   return (
-    <div className="flex flex-col z-10 fixed  h-[5.5rem] w-full bg-[#ffff]">
+    <div className="flex flex-col z-10 fixed justify-center  h-[6rem] w-full bg-[#ffff] border">
 
       <div className="w-full bg-[#f1f2f2] p-[7px] h-[30px] text-right pl-[2rem]  pt-[5px] text-xs flex justify-start items-center ml-0">
         <a className="hover:text-[#2962ff] font-inter" href='/seller'>Start as Seller</a>
       </div>
-      <div className="flex  items-center">
+      <div className="flex h-[5rem] items-center">
         <div
           className="flex justify-start items-center pl-[1rem] w-full h-full gap-5"
           id="name"

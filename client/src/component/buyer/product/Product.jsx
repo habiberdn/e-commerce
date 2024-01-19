@@ -78,11 +78,11 @@ export default function Product() {
     setExpanded(!expanded);
   }
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 bg-[#f1f2f2]">
       <Navbar />
-      <div className="flex flex-col bg-[#f1f2f2] mt-[6rem] pb-[2rem]  gap-2 overflow-x-hidden">
+      <div className="flex flex-col bg-[#f1f2f2] mt-[6rem] pb-[2rem]  gap-[1rem] overflow-x-hidden " >
 
-        <div className=" flex gap-5 p-[30px] bg-[#ffff] ml-[1.6rem] mt-[1rem]">
+        <div className=" flex gap-5 p-[30px] bg-[#ffff] ml-[1.6rem] mr-[1.6rem] mt-[1.5rem]">
           <div className="flex gap-5 ">
             <div className="">
               <img
@@ -170,7 +170,10 @@ export default function Product() {
             </div>
           </div>
         </div>
-        <div className=" flex gap-5 p-[30px] bg-[#ffff] ml-[1.6rem] mt-[1rem]">
+        <div className="bg-[#ffff] h-[8rem] mr-[1.6rem] ml-[1.6rem]"> 
+
+        </div>
+        <div className=" flex gap-5 p-[30px] bg-[#ffff] ml-[1.6rem] mr-[1.6rem]">
           <div className="flex flex-col gap-1 ">
             <h4 className="font-inter text-lg">Review</h4>
             <div className="flex gap-1">

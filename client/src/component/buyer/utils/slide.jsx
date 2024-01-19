@@ -17,7 +17,7 @@ const Example = () => {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
-  return (
+  return (  
     <div className="mt-2 ml-[1.1rem] mr-[0.5rem] w-[98%] rounded-lg z-0 ">
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>

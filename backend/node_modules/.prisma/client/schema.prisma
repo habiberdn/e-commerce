@@ -9,6 +9,7 @@ model User {
   email                 String    @unique
   role                  Role?     @default(Buyer)
   password              String?   @db.Text()
+  photo                 String?
   created_at            DateTime? @default(now())
   passwordResetToken    String? 
   passwordResetExpires  DateTime?
@@ -18,8 +19,9 @@ model User {
 
 model Seller {
   id                    Int       @id @default(autoincrement())
-  name                  String   @db.Text()  @unique
+  name                  String    @db.Text()  @unique
   email                 String    @unique
+  photo                 String?   @default("default.webp")
   role                  Role?     @default(Seller)
   password              String?   @db.Text()
   created_at            DateTime? @default(now())
@@ -41,7 +43,7 @@ model Product {
   stock               Int?
   status              Boolean   @default(true)
   seller              Seller    @relation(fields: [sellerName], references: [name])
-  sellerName         String
+  sellerName          String
 }
 
 model Rating{

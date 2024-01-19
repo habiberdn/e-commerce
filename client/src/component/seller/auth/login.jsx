@@ -13,6 +13,7 @@ const Login = () => {
         password: "",
         error: ""
     })
+    console.log(data)
     const handleChange = (e) => {
         const { name, value } = e.target
         setdata(prev => {
