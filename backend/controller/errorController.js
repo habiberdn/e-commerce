@@ -80,7 +80,7 @@ module.exports = (err, req, res, next) => {
     let error = Object.create(err);
    
     if (error.name === 'CastError') error = handleCastErrorDb(error);
-    if (error.code === 11000) error = handleDuplicateFieldDb(error);
+    if (error.code === "P2002") error = handleDuplicateFieldDb(error);
     if (error.name === 'ValidationError') error = handleValidationErrorDb(error);
     if (error.name === "JsonWebTokenError") error =handleJWTError()
     if(error.name ==="TokenExpiredError") error = handleTokenExpError()

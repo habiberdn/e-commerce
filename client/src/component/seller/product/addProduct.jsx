@@ -41,7 +41,6 @@ const AddProduct = () => {
             }));
         }
         setDigit(value.length)
-
     }
 
     const handleSubmit = async (e) => {
@@ -63,25 +62,25 @@ const AddProduct = () => {
                         Authorization: `Bearer ${cookies.get('jwtseller')}`,
                     }
                 })
+            console.log(response)
             response.status === 201 ?
                 setSuccess(true) : setSuccess(false)
+            response.status === 201 && setTimeout(() => {
+                window.location.reload();
+            }, 1200)
 
-            response.status === 201 && setTimeout(()=>{
-                Navigate('/addProduct')
-            },1200)
-            
             console.log(response)
         } catch (err) {
             console.log(err)
         }
 
     }
-    useEffect(()=>{
-        isSuccess && setTimeout(    
+    useEffect(() => {
+        isSuccess && setTimeout(
             Navigate('/addProduct')
             , 1000)
-    },[isSuccess])
-    
+    }, [isSuccess])
+
     function addFlag(productCategory) {
         setValue((prev) => {
             return { ...prev, productCategory }

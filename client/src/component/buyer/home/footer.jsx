@@ -40,15 +40,11 @@ export default function Footer() {
           <p className="">Payment</p>
         </b>
         <div className="flex gap-2">
-        <div className="w-[2.5rem] h-[2.5rem] relative overflow-hidden rounded-full ">
-
-          <img src={Visa} className="w-full h-full object-cover object-center" alt="visa"/>
-            
+          <div className="w-[4.5rem] h-[2.5rem] relative overflow-hidden rounded-full ">
+            <img src={Visa} className="w-full h-full object-cover object-center" alt="visa" />
           </div>
           <div className="w-[2.5rem] h-[2.5rem] relative overflow-hidden rounded-full ">
-
-          <img src={MasterCard} alt="masterCard" className="w-full h-full object-cover object-center"/>
-
+            <img src={MasterCard} alt="masterCard" className="w-full h-full object-cover object-center" />
           </div>
         </div>
       </div>

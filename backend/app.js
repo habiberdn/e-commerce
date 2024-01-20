@@ -21,7 +21,7 @@ app.use(cors(
   {
     origin: ['http://localhost:3000','http://localhost:3000/seller/login'],
     credentials: true,            //access-control-allow-credentials:true
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET","DELETE"],
   }
 ));
 app.use(function(req, res, next) {
@@ -32,6 +32,9 @@ app.use(function(req, res, next) {
     'Origin, X-Requested-With, Content-Type, Accept',
     'Access-Control-Allow-Origin'
   )
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Replace with your client's origin
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next()
 })
 app.use(cookieParser());

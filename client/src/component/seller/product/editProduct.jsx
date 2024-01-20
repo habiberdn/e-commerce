@@ -149,13 +149,15 @@ const EditProduct = () => {
                             <label className='font-dmsans'>Photo</label>
                         </div>
 
-                        <div className='w-[70%] flex z-30 items-center gap-4  hover:cursor-pointer'>
-                            <div className="w-[5.5rem] h-[5rem] flex justify-center items-center rounded-xl hover:cursor-pointer border border-dashed bg-cover bg-center p-4" style={{ backgroundImage: `url('${photo ? photo : value.image && require(`../../../../../backend/img/product/${value.image}`)}') ` }}>
-                                <label for="file-input" className="flex w-full h-full flex-col text-sm justify-center items-center" >
-                                </label>
-                                <input type="file" id="file-input" className="hidden " onInput={(e) => {
-                                    setPhoto(URL.createObjectURL(e.target.files[0]))
-                                }} />
+                        <div className='w-[70%] flex z-30 items-center gap-4 h-[5.5rem] '>
+                            <div className='rounded-xl hover:cursor-pointer border border-dashed p-2'>
+                                <div className="w-[5.5rem] hover:cursor-pointer h-[5.5rem] flex justify-center items-center  bg-cover bg-center " style={{ backgroundImage: `url('${photo ? photo : value.image && require(`../../../../../backend/img/product/${value.image}`)}') ` }}>
+                                    <label for="file-input" className="flex w-full h-full flex-col text-sm justify-center items-center" >
+                                    </label>
+                                    <input type="file" id="file-input" className="hidden " onInput={(e) => {
+                                        setPhoto(URL.createObjectURL(e.target.files[0]))
+                                    }} />
+                                </div>
                             </div>
                         </div>
                     </div>

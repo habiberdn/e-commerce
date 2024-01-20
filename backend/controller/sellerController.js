@@ -8,3 +8,18 @@ exports.getAllUser = async(req,res,next)=>{
         user
     })
 }
+
+exports.updateUser = async(req,res,next)=>{
+    const updateSeller = await prisma.seller.update({
+        where:{
+            email: req.body.email
+        },
+        data : {
+            name : req.body.name
+        }
+    })
+    res.status(200).json({
+        status: 'success',
+        updateSeller
+    })
+}

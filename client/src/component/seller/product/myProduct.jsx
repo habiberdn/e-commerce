@@ -14,7 +14,7 @@ const MyProduct = () => {
     const [isClick, setClick] = useState(false)
     const [value, setValue] = useState()
     const [valCheckBox, setCheckBox] = useState()
-    
+
     const Navigate = useNavigate()
     const handleInput = () => {
         setClick(true)
@@ -25,7 +25,7 @@ const MyProduct = () => {
             setProduct(response)
         })
     }, [])
-   
+
     const handleBlur = () => {
         setClick(false)
     }
@@ -45,7 +45,7 @@ const MyProduct = () => {
         setCheckBox((prev) => {
             return {
                 ...prev,
-                [name]: checked && 'Checked' 
+                [name]: checked && 'Checked'
             }
         })
     }

@@ -64,14 +64,14 @@ exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   console.log(req.body)
   //1. Check password and email are exist
-  if ( !password) {
+  if (!password) {
     return next(new AppError("Please provide email and password", 401));
   }
   const user = await prisma.user.findUnique({
     where: {
       email: email,
     },
-    
+
   });
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return next(new AppError("Incorrect email or password", 401));
@@ -80,8 +80,19 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 exports.signupSeller = catchAsync(async (req, res, next) => {
+  console.log(req.body)
   try {
     const hashPassword = await bcrypt.hash(req.body.password, 10);
+
+    const emailUser = await prisma.seller.findUnique({
+      where: {
+        email: req.body.email
+      }
+    })
+
+    if (emailUser) {
+      next(new AppError('This email or username already taken! Try another', 401))
+    }
 
     const user = await prisma.seller.create({
       data: {
@@ -98,6 +109,7 @@ exports.signupSeller = catchAsync(async (req, res, next) => {
     });
 
   } catch (error) {
+    console.error(error)
     res.status(500).json({ error });
   }
 
