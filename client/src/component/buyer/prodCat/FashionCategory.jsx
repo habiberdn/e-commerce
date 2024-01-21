@@ -4,7 +4,6 @@ import Dropdown from "../utils/dropdown";
 import axios from "axios";
 import Card from "../home/card";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Rating from "../utils/rating";
@@ -49,9 +48,9 @@ export default function FashionCat() {
     <div className="flex flex-col">
       <Navbar />
       <div className="flex flex-col bg-[#f1f2f2]  mt-[5rem] pb-[2rem]  gap-2 ">
-        <div className="ml-[1.6rem] w-full mt-[1.5rem] flex gap-24">
+        <div className="ml-[1.6rem] w-full mt-[2rem] flex gap-24">
           <div className="flex flex-col gap-3">
-            <div className="">
+            <div className="translate-y-[10px]">
               <h4 className="text-[#2962FF] flex gap-2 font-dmsans">
                 Home <p className="text-black">&gt;</p> Category
                 <p className="text-black">&gt;</p> Fashion
@@ -86,12 +85,12 @@ export default function FashionCat() {
               </div>
             </div>
             <div className={` ${isData.length === 0 ? "h-[24rem] flex justify-center items-center" : ""}`}>
-              <p className="flex text-center text-sm text-[#8E8E8E]">This Category Doesn't Have Any Product Yet!</p>
+             {isData.length === 0 && <p className="flex text-center text-sm text-[#8E8E8E]">This Category Doesn't Have Any Product Yet!</p>} 
               {Object.keys(isData).map((key) => {
                 return (
                   <Grid item xs={3} className="">
-                    <div className="flex justify-center  items-center h-full ">
-                      <Item className="flex justify-center items-center  mr-[2.5rem] h-full mt-4 rounded-xl ">
+                    <div className="flex  items-center h-full ">
+                      <Item className="flex  items-center  mr-[2.5rem] h-full  rounded-xl ">
                         <Card
                           id={isData[key].id}
                           name={isData[key].name}

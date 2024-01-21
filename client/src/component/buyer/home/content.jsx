@@ -3,9 +3,7 @@ import Slide from "../utils/slide";
 import Card from "./card";
 import Axios from "axios";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
 import Elektronik from "../../image/Laptop.webp";
 import Fashion from '../../image/kids_tshirt.webp'
 import Camera from '../../image/camera.webp'
@@ -28,7 +26,6 @@ export default function Home() {
 
   }, []);
   console.log(isData)
-
   return (
     <div className="flex flex-col  bg-[#f1f2f2] mt-[6rem] pb-[2rem]  gap-3 ">
       <Slide />
@@ -70,12 +67,12 @@ export default function Home() {
             For You
           </p>
         </div>
-        <div className="grid grid gap-4 grid-cols-7 ml-[1.1rem]">
-          {isData?.map((value) => {
+        <div className="grid gap-4 grid-cols-6 ml-[1.1rem] ">
+          {isData?.map((value, index) => {
             return (
-              <div className="flex justify-center ml-[5px] items-center h-full w-full">
-                <Item className=" mt-4  rounded-xl ">
-                  <div className="flex justify-center items-center h-full w-full">
+              <div className="flex ml-[10px] h-full w-[100%]" key={index} >
+                <Item className="translate-y-[10px] flex rounded-xl w-full h-full ">
+                  <div className="flex h-full w-full justify-center items-center">
                     <Card
                       id={value.id}
                       name={value.name}
@@ -89,7 +86,6 @@ export default function Home() {
               </div>
             );
           })}
-
         </div>
 
       </div>

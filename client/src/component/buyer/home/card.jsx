@@ -2,14 +2,14 @@ import React from "react";
 
 export default function Card(props) {
   return (
-    <div className="rounded-lg  ">
-      <div className="relative w-[11rem]   flex flex-col flex-start rounded-lg ">
+    <div className="rounded-lg  w-full flex justify-center  items-center ">
+      <div className="relative w-[11.5rem] flex flex-col  justify-center  items-center rounded-lg ">
         <a href={"/" + props.id} className="">
           <div className="mb-2 flex justify-center ">
             <img
               alt="img"
               src={require(`../../../../../backend/img/product/${props.image}`)}
-              
+
               className="rounded-lg w-full "
               loading="lazy"
               aria-label="image"

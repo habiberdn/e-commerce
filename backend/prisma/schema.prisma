@@ -36,6 +36,7 @@ model Product {
   image               String
   created_at          DateTime  @default(now())
   productCategory     Category
+  note                String?
   ratingsAverage      Float?   
   ratingsQuantity     Int?      @default(0)
   ReviewQuantity      Int?      @default(0)
