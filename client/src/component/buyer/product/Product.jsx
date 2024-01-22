@@ -3,6 +3,7 @@ import Navbar from "../home/navbar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import RatingStats from "../utils/ratingStats";
+import Footer from '../home/footer'
 
 export default function Product() {
   let params = useParams();
@@ -16,7 +17,7 @@ export default function Product() {
     name: "",
     review: ""
   });
-  console.log(Product)
+
   useEffect(() => {
     Product && axios
       .get(`http://127.0.0.1:3001/api/v1/rating/${params.product}`)
@@ -26,7 +27,7 @@ export default function Product() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [params.product]);
+  }, [params.product, Product]);
 
   useEffect(() => {
     // loop ratings value 
@@ -65,7 +66,6 @@ export default function Product() {
         setProduct(response.data.getData);
       });
   }, [params.product]);
-
   const incrementCount = () => {
     setCount(count + 1);
   };
@@ -80,9 +80,9 @@ export default function Product() {
   return (
     <div className="flex flex-col gap-3 bg-[#f1f2f2]">
       <Navbar />
-      <div className="flex flex-col bg-[#f1f2f2] mt-[6rem] pb-[2rem]  gap-[1rem] overflow-x-hidden " >
+      <div className="flex flex-col bg-[#f1f2f2] mt-[6rem] pb-[2rem]  ml-[1.6rem] mr-[1.6rem] gap-[1rem] overflow-x-hidden " >
 
-        <div className=" flex gap-5 p-[30px] bg-[#ffff] ml-[1.6rem] mr-[1.6rem] mt-[1.5rem]">
+        <div className=" flex gap-5 p-[30px] bg-[#ffff] mt-[1.5rem]">
           <div className="flex gap-5 ">
             <div className="">
               <img
@@ -118,7 +118,7 @@ export default function Product() {
 
               <div className="flex flex-col w-[25rem]">
                 <p className="border-b-2 pb-[7px]">Description</p>
-                <p className="pt-[5px]">{Product && Product.description}</p>
+                <p className="pt-[5px] text-[#333]">{Product && Product.description}</p>
               </div>
             </div>
 
@@ -170,10 +170,37 @@ export default function Product() {
             </div>
           </div>
         </div>
-        <div className="bg-[#ffff] h-[8rem] mr-[1.6rem] ml-[1.6rem]"> 
+        <div className="bg-[#ffff] p-[30px] gap-8 h-[162px] flex justify-start items-center  ">
+          <img src="" alt="" className="rounded-full w-[127px] h-[127px] bg-[#D9D9D9]" />
+          <div className="flex flex-col gap-5 h-full justify-center items-center  translate-x-[1rem] pr-[4.8rem] border-r-2">
+            <p>{Product && Product.sellerName}</p>
+            <button className=" bg-[#2962ff] text-white  rounded-[20px] h-[43px] w-[118px]">Visit</button>
+          </div>
+          <div className="flex gap-10">
+            <div className="flex flex-col gap-5">
+              <div className="flex  w-[13rem] justify-between ">
+                <p className="font-dmsans text-[#8E8E8E]">Rating Total</p>
+                <p className="font-dmsans text-[#2962FF]">10</p>
+              </div>
+              <div className="flex  w-[13rem] justify-between">
+                <p className="font-dmsans text-[#8E8E8E]">Rating Average</p>
+                <p className="font-dmsans text-[#2962FF]">4.8</p>
+              </div>
+            </div>
+            <div className="flex flex-col gap-5">
+              <div className="flex w-[13rem] justify-between ">
+                <p className="font-dmsans text-[#8E8E8E]">Product</p>
+                <p className="font-dmsans text-[#2962FF]">3</p>
+              </div>
+              <div className="flex w-[13rem] justify-between">
+                <p className="font-dmsans text-[#8E8E8E]">Join</p>
+                <p className="font-dmsans text-[#2962FF]">3 Month ago </p>
+              </div>
+            </div>
+          </div>
 
         </div>
-        <div className=" flex gap-5 p-[30px] bg-[#ffff] ml-[1.6rem] mr-[1.6rem]">
+        <div className=" flex gap-5 p-[30px] bg-[#ffff]">
           <div className="flex flex-col gap-1 ">
             <h4 className="font-inter text-lg">Review</h4>
             <div className="flex gap-1">
@@ -244,6 +271,10 @@ export default function Product() {
               : <p className="w-[full] text-gray-500 h-full flex justify-center items-center">Don't have any review!</p>}
           </div>
         </div>
+      </div>
+      <div className="bg-[#ffff]">
+        <Footer />
+
       </div>
     </div>
 

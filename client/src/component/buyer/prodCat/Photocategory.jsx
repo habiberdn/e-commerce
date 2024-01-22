@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../home/navbar";
+import Footer from '../home/footer'
 import Dropdown from "../utils/dropdown";
 import axios from "axios";
 import Card from "../home/card";
@@ -48,7 +49,7 @@ export default function PhotographyCat() {
   return (
     <div className="flex flex-col">
       <Navbar />
-      <div className="flex flex-col bg-[#f1f2f2] mt-[5.5rem] pb-[2rem]  gap-2 ">
+      <div className="flex flex-col bg-[#f1f2f2] mt-[5.5rem]  h-screen">
         <div className="ml-[1.6rem] w-full mt-[1.5rem] flex gap-24">
           <div className="flex flex-col  gap-3">
             <div className=" translate-y-[10px]">
@@ -110,6 +111,7 @@ export default function PhotographyCat() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
 
   );
