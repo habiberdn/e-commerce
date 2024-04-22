@@ -3,7 +3,7 @@ import React from "react";
 export default function Rating() {
   return (
     <div>
-      <div className="ml-[10px] gap-3 flex flex-col mt-[8px]">
+      <div className="ml-[20px] gap-3 flex flex-col mt-[8px]">
         <p className="font-dmsans text-lg">Rating</p>
         <div className="flex gap-2 hover:bg-gray-50">
           <div className="flex w-[5rem] ">

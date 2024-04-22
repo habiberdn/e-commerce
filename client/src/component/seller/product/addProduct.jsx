@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from '../home /navbar';
+import Navbar from '../home/navbar';
 import Dropdown from '../../buyer/utils/dropdownCategory'
 import Switch from '@mui/material/Switch';
 import axios from 'axios';

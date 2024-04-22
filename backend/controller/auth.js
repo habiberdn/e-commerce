@@ -4,12 +4,13 @@ const catchAsync = require("../utils/catchAsync");
 const bcrypt = require("bcryptjs");
 const { promisify } = require('util');
 const { PrismaClient } = require("@prisma/client");
+const resCookie = require('../utils/cookie')
 const prisma = new PrismaClient();
 
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRED_IN,
-  });
+    expiresIn: process.env.JWT_EXPIRED_IN
+  })
 };
 
 const createSendToken = (user, statusCode, res) => {
@@ -18,14 +19,18 @@ const createSendToken = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
-    httpOnly: true, //receive cookie,store it, send it automatically along every request
+    // httpOnly: true, //receive cookie,store it, send it automatically along every request
+    path: '/seller',
+    domain: 'localhost'
   };
-
+  
   if (process.env.NODE_ENV === "Production") cookieOption.secure = true;
 
   //remove password from the output
   user.password = undefined;
-  res.cookie("jwt", token, cookieOption);
+  res.cookie("jwt", token, cookieOption)
+  // console.log(res.cookie("jwt", token, cookieOption));
+  // console.log(new resCookie("JWT",token,cookieOption).Cookie())
 
   res.status(statusCode).json({
     status: "Success",
@@ -39,7 +44,6 @@ const createSendToken = (user, statusCode, res) => {
 exports.signup = catchAsync(async (req, res, next) => {
   try {
     const hashPassword = await bcrypt.hash(req.body.password, 10);
-
     const user = await prisma.user.create({
       data: {
         name: req.body.name,
@@ -56,13 +60,13 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   } catch (error) {
     res.status(500).json({ error });
+    console.error(error)
   }
 
 });
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(req.body)
   //1. Check password and email are exist
   if (!password) {
     return next(new AppError("Please provide email and password", 401));
@@ -71,7 +75,6 @@ exports.login = catchAsync(async (req, res, next) => {
     where: {
       email: email,
     },
-
   });
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return next(new AppError("Incorrect email or password", 401));

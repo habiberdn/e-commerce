@@ -57,7 +57,7 @@ export default function ElectronicCat() {
             </div>
             <div className="ml-[3px] flex flex-col gap-5">
               <div className="bg-[#FFFF] h-[9rem] rounded-lg w-[16rem] mt-[2rem] gap-2">
-                <div className="ml-[10px] gap-3 flex flex-col mt-[8px] ">
+                <div className="ml-[20px] gap-3 flex flex-col mt-[8px] ">
                   <p className="font-dmsans text-lg">Price</p>
                   <input
                     type="text"

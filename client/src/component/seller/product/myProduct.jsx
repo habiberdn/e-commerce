@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Navbar from '../home /navbar'
+import Navbar from '../home/navbar'
 import Sidebar from '../utils/sidebarSeller'
 import Dropdown from '../../buyer/utils/dropdownCategory'
 import { useNavigate } from "react-router-dom";
@@ -20,8 +20,8 @@ const MyProduct = () => {
         setClick(true)
     }
 
-    useEffect(() => {
-        axios.get(`http://127.0.0.1:3001/api/v1/product/${localStorage.getItem('username')}`).then((response) => {
+    useEffect( () => {
+         axios.get(`http://127.0.0.1:3001/api/v1/product/${localStorage.getItem('username')}`).then((response) => {
             setProduct(response)
         })
     }, [])
@@ -30,18 +30,15 @@ const MyProduct = () => {
         setClick(false)
     }
 
-    const handleProduct = () => {
-
-    }
-
     const handleAddProduct = () => {
         Navigate('/addProduct')
     }
 
+    const handleProduct = ()=>{}
+
     const handleCheckbox = (e) => {
         const { name, checked } = e.target
 
-        // console.log(valCheckBox && valCheckBox[name] === 'Checked' && valCheckBox)
         setCheckBox((prev) => {
             return {
                 ...prev,
@@ -66,9 +63,10 @@ const MyProduct = () => {
                         <h1 className='font-dmsans text-xl'>List Product</h1>
                         <button className='text-white bg-[#2962ff] px-3 p-2 rounded-xl ' onClick={handleAddProduct}>+ Add Product</button>
                     </div>
-                    <div className='bg-[#ffff] p-4 gap-4  flex flex-col '>
+                    <div className='bg-[#ffff] p-4 gap-4  flex flex-col'>
                         <div className='flex border-b-2 '>
-                            <button className='focus:text-[#2962ff] p-2 focus:border-[#2962ff] font-dmsans' onClick={handleProduct}>All Product
+                            <button className='focus:text-[#2962ff] p-2 focus:border-[#2962ff] font-dmsans' onClick={handleProduct}>
+                                All Product
                             </button>
                         </div>
                         <div className='flex gap-4 h-[2.7rem] '>

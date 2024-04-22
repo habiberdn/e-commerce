@@ -10,7 +10,7 @@ import {
 
 const Signup = () => {
     const Navigate = useNavigate()
-    const [isSuccess, setSuccess] = useState()
+    const [isSuccess, setSuccess] = useState(null)
     const cookies = new Cookies();
     const [data, setdata] = useState({
         email: "",
@@ -52,7 +52,7 @@ const Signup = () => {
                     Navigate('/seller/login')
                 }, 1500)
             }
-            
+
         } catch (error) {
             console.log(error)
             setdata({
@@ -93,17 +93,18 @@ const Signup = () => {
                         </div>
                     </div>
                     <div className='flex flex-col gap-2'>
-                        {/* {data.error && <h1 className='text-[#ff0000] text-sm'>{data.error}</h1>} */}
                         {isSuccess ? <ChakraProvider >
                             <Alert status='success'>
                                 <AlertIcon />
-                                Data uploaded to the server !
+                                Data uploaded to the server,please log in!
                             </Alert>
-                        </ChakraProvider> : 
-                        <ChakraProvider ><Alert status='error'>
-                            <AlertIcon />
-                            {data.error}
-                        </Alert></ChakraProvider>}
+                        </ChakraProvider> :
+                            data.error ?
+                                <ChakraProvider >
+                                    <Alert status='error'>
+                                        <AlertIcon />
+                                        {data.error}
+                                    </Alert></ChakraProvider> : null}
                         <button className="border p-[1.4rem] flex items-center justify-center bg-[#2962ff] text-white rounded-full h-[2rem] " onClick={handleSubmit}>
                             Signup
                         </button>

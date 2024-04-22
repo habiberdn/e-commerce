@@ -1,19 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import Cookies from 'universal-cookie';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
 const Login = () => {
     const Navigate = useNavigate()
-    const cookies = new Cookies();
     const dispatch = useDispatch();
     const [data, setdata] = useState({
         email: "",
         password: "",
         error: ""
     })
-    console.log(data)
     const handleChange = (e) => {
         const { name, value } = e.target
         setdata(prev => {
@@ -28,25 +25,17 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:3001/api/v1/seller/login', {
+            const response = await axios.post('http://localhost:3001/api/v1/seller/login', {
                 email: data.email,
                 password: data.password
             }, {
                 withCredentials: true
             })
             console.log(response)
-
-            if (response.status === 200) {
-                cookies.set('jwtseller', response.data.token, {
-                    path:  '/seller'
-                });
-                cookies.set('jwtseller', response.data.token, {
-                    path: '/addProduct'
-                });
+            if (response?.status === 200) {
                 dispatch({ type: 'set_username', payload: response.data.data.user.name });
                 Navigate('/seller');
             } else {
-               
                 setdata({
                     error: 'Invalid Email or Password'
                 });
