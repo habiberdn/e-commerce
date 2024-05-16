@@ -4,7 +4,7 @@ const catchAsync = require("../utils/catchAsync");
 const bcrypt = require("bcryptjs");
 const { promisify } = require('util');
 const { PrismaClient } = require("@prisma/client");
-const resCookie = require('../utils/cookie')
+const resCookie = require('../utils/cookie');
 const prisma = new PrismaClient();
 
 const signToken = (id) => {
@@ -29,8 +29,6 @@ const createSendToken = (user, statusCode, res) => {
   //remove password from the output
   user.password = undefined;
   res.cookie("jwt", token, cookieOption)
-  // console.log(res.cookie("jwt", token, cookieOption));
-  // console.log(new resCookie("JWT",token,cookieOption).Cookie())
 
   res.status(statusCode).json({
     status: "Success",
@@ -62,7 +60,6 @@ exports.signup = catchAsync(async (req, res, next) => {
     res.status(500).json({ error });
     console.error(error)
   }
-
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -115,7 +112,6 @@ exports.signupSeller = catchAsync(async (req, res, next) => {
     console.error(error)
     res.status(500).json({ error });
   }
-
 });
 
 exports.loginSeller = catchAsync(async (req, res, next) => {
