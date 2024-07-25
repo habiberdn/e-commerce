@@ -67,11 +67,11 @@ export default function Home() {
             For You
           </p>
         </div>
-        <div className="grid gap-4 grid-cols-6 ml-[1.1rem] ">
+        <div className="grid gap-4 grid-cols-5 ml-[1.1rem] mr-[1.5rem]  ">
           {isData?.map((value, index) => {
             return (
-              <div className="flex ml-[10px] h-full w-[100%]" key={index} >
-                <Item className="translate-y-[10px] flex rounded-xl w-full h-full ">
+              <div className="flex ml-[10px] h-full " key={index} >
+                <Item className="translate-y-[10px] flex rounded-xl w-[100%] h-full ">
                   <div className="flex h-full w-full justify-center items-center">
                     <Card
                       id={value.id}
