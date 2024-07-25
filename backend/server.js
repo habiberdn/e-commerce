@@ -6,7 +6,7 @@ const kill = require('kill-port')
 env.config({ path: './.env' })
 
 
- app.listen(port,"0.0.0.0", () => {
+ app.listen(port, () => {
     console.log(`App running on port ${port}`);
    
   });
