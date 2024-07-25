@@ -19,7 +19,7 @@ app.use(session({
 }));
 app.use(cors(
   {
-    origin: ['http://localhost:3000','http://localhost:3001','http://127.0.0.1:3000','http://127.0.0.1:3000/seller','http://127.0.0.1:3000/seller/login','http://localhost:3000/seller','http://localhost:3000/seller/login','http://localhost:3000/seller/signup'],
+    origin: ['http://localhost:3000','http://localhost:3001','http://127.0.0.1:3000','http://127.0.0.1:3000/seller','http://127.0.0.1:3000/seller/login','http://localhost:3000/seller','http://localhost:3000/seller/login','http://localhost:3000/seller/signup', 'https://e-commerce-e0oczhy7l-daizy11s-projects.vercel.app/'],
     credentials: true,            //access-control-allow-credentials:true
     methods: ["POST", "GET","DELETE"],
   }
