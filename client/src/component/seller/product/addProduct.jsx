@@ -59,7 +59,7 @@ const AddProduct = () => {
                 , {
                     withCredentials: true,
                     headers: {
-                        Authorization: `Bearer ${cookies.get('jwtseller')}`,
+                        Authorization: `Bearer ${cookies.get('jwt')}`,
                     }
                 })
             console.log(response)

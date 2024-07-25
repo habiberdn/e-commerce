@@ -33,7 +33,7 @@ const Login = () => {
             })
             console.log(response)
             if (response?.status === 200) {
-                dispatch({ type: 'set_username', payload: response.data.data.user.name });
+                dispatch({ type: 'set_username', payload: response.data && response.data.data.user.name });
                 Navigate('/seller');
             } else {
                 setdata({
@@ -43,7 +43,7 @@ const Login = () => {
         } catch (error) {
             console.log(error)
             setdata({
-                error: error.response.data.message
+                error: "Invalid Email or Password"
             });
         }
     };

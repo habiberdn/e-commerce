@@ -4,7 +4,6 @@ const catchAsync = require("../utils/catchAsync");
 const bcrypt = require("bcryptjs");
 const { promisify } = require('util');
 const { PrismaClient } = require("@prisma/client");
-const resCookie = require('../utils/cookie');
 const prisma = new PrismaClient();
 
 const signToken = (id) => {
@@ -23,12 +22,23 @@ const createSendToken = (user, statusCode, res) => {
     path: '/seller',
     domain: 'localhost'
   };
+
+
   
   if (process.env.NODE_ENV === "Production") cookieOption.secure = true;
 
   //remove password from the output
   user.password = undefined;
   res.cookie("jwt", token, cookieOption)
+  res.cookie("jwt", token, {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    // httpOnly: true, //receive cookie,store it, send it automatically along every request
+    path: '/addProduct',
+    domain: 'localhost'
+  })
+
 
   res.status(statusCode).json({
     status: "Success",
@@ -149,6 +159,7 @@ exports.protect = catchAsync(async (req, res, next) => {
       new AppError("You are not log in, please log in to get access", 401)
     );
   }
+  console.log(token)
   //2. Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET); //seeing if the payload token has not been manipulated by some malicious third party
   //3. Check if user still exist

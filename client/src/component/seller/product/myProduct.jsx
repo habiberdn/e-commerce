@@ -11,7 +11,7 @@ const MyProduct = () => {
     const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
     const [product, setProduct] = useState()
-    const [isClick, setClick] = useState(false)
+    const [isClick, setClick] = useState(false) 
     const [value, setValue] = useState()
     const [valCheckBox, setCheckBox] = useState()
 
@@ -63,13 +63,13 @@ const MyProduct = () => {
                         <h1 className='font-dmsans text-xl'>List Product</h1>
                         <button className='text-white bg-[#2962ff] px-3 p-2 rounded-xl ' onClick={handleAddProduct}>+ Add Product</button>
                     </div>
-                    <div className='bg-[#ffff] p-4 gap-4  flex flex-col'>
+                    <div className='bg-[#ffff] p-4 gap-4  flex flex-col h-[28rem] overflow-auto'>
                         <div className='flex border-b-2 '>
                             <button className='focus:text-[#2962ff] p-2 focus:border-[#2962ff] font-dmsans' onClick={handleProduct}>
                                 All Product
                             </button>
                         </div>
-                        <div className='flex gap-4 h-[2.7rem] '>
+                        <div className='flex gap-4 h-[2.7rem]   '>
                             <div className={`w-[30%] flex items-center border ${isClick ? 'border-[#2962ff]' : 'border-[#8E8E8E]'} pl-2 rounded-lg`}>
                                 <span className='text-[#8E8E8E] font-dmsans w-[20px]'>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z" fill="currentColor"></path></svg>
