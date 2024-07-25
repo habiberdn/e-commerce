@@ -23,6 +23,7 @@ app.use(cors(
     credentials: true,            //access-control-allow-credentials:true
     methods: ["POST", "GET","DELETE"],
   }
+  
 ));
 app.use(function(req, res, next) {
   res.header('Content-Type', 'application/json;charset=UTF-8')
