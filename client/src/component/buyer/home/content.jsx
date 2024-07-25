@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Home() {
   const [isData, setData] = useState();
   useEffect(() => {
-      Axios.get("http://localhost:3001/api/v1/product").then((response) => {
+      Axios.get("/api/v1/product").then((response) => {
         console.log(response.data.getData)
         setData(response.data.getData);
       });
