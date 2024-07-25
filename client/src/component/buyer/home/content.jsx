@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Home() {
   const [isData, setData] = useState();
   useEffect(() => {
-      Axios.get("https://e-commerce-82v0p9ywv-daizy11s-projects.vercel.app/api/v1/product").then((response) => {
+      Axios.get("e-commerce-mu-umber.vercel.app/api/v1/product").then((response) => {
         console.log(response.data.getData)
         setData(response.data.getData);
       });
