@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Card(props) {
+  
   return (
     <div className="rounded-lg  w-full  flex justify-center  items-center ">
       <div className="relative w-[12.5rem]  flex flex-col  justify-center  items-center rounded-lg ">
